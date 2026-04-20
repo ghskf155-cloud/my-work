@@ -25,12 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     innerNavBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            // If data-target doesn't exist, this button is not for routing. Just return.
+            if (!targetId) return;
+
             innerNavBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const targetId = btn.getAttribute('data-target');
             innerPages.forEach(page => page.classList.remove('active'));
-            document.getElementById(targetId).classList.add('active');
+            const targetEl = document.getElementById(targetId);
+            if(targetEl) targetEl.classList.add('active');
         });
     });
 
@@ -153,9 +157,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (openWriteFormBtn) {
         openWriteFormBtn.addEventListener('click', () => {
-            boardFormContainer.style.display = 'block';
-            resetForm();
-            boardFormContainer.scrollIntoView({ behavior: 'smooth' });
+            const isHidden = window.getComputedStyle(boardFormContainer).display === 'none';
+            if (isHidden) {
+                boardFormContainer.style.display = 'block';
+                resetForm();
+                boardFormContainer.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                boardFormContainer.style.display = 'none';
+            }
+        });
+    }
+
+    const contactBtn = document.getElementById('contactBtn');
+    const contactContainer = document.getElementById('contactContainer');
+
+    if (contactBtn && contactContainer) {
+        contactBtn.addEventListener('click', () => {
+            const isHidden = window.getComputedStyle(contactContainer).display === 'none';
+            if (isHidden) {
+                contactContainer.style.display = 'block';
+                contactContainer.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                contactContainer.style.display = 'none';
+            }
         });
     }
 
@@ -284,6 +308,27 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveBoard() {
         localStorage.setItem('amk_portfolio_board', JSON.stringify(boardData));
         renderBoard();
+    }
+
+    const readMoreBtnA = document.getElementById('readMoreBtnA');
+    const projectAContent = document.getElementById('projectAContent');
+    const projectAFade = document.getElementById('projectAFade');
+
+    if (readMoreBtnA && projectAContent && projectAFade) {
+        let isExpanded = false;
+        readMoreBtnA.addEventListener('click', () => {
+            if (!isExpanded) {
+                projectAContent.style.maxHeight = '1500px'; 
+                projectAFade.style.opacity = '0';
+                readMoreBtnA.innerHTML = 'Show Less <i class="fas fa-chevron-up"></i>';
+                isExpanded = true;
+            } else {
+                projectAContent.style.maxHeight = '280px';
+                projectAFade.style.opacity = '1';
+                readMoreBtnA.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
+                isExpanded = false;
+            }
+        });
     }
 
     // Initial render

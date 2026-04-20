@@ -6,7 +6,7 @@
     <title>조윤기 | AMK CE Engineer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -38,7 +38,7 @@
                     <h2><i class="far fa-id-badge"></i> IDENTITY</h2>
                     <ul class="tech-list">
                         <li><strong>Name</strong> 조윤기</li>
-                        <li><strong>Univ</strong> 동양미래대학교 로봇소프트웨어과 (22학번)</li>
+                        <li><strong>Univ</strong> <a href="https://www.dongyang.ac.kr/dmu/4479/subview.do" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(0, 243, 255, 0.5); padding-bottom: 2px; transition: color 0.3s;" onmouseover="this.style.color='#00f3ff'" onmouseout="this.style.color='inherit'">동양미래대학교 로봇소프트웨어과 <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.8;"></i></a></li>
                         <li><strong>Core</strong> 하드웨어의 물리적 견고함 + AI/클라우드 제어 편의성</li>
                         <li><strong>Vision</strong> 기구 설계 역량과 소프트웨어 제어 역량을 겸비하여, 오차를 보정하고 노이즈를 통제하는 'T자형 실무 인재'</li>
                     </ul>
@@ -58,6 +58,9 @@
             <div class="section-header">
                 <h2>초급부터 고급까지, 현장 투입을 위한 10단계 징검다리</h2>
                 <p>반도체 물리 이론부터 장비 제어, 자동화 통신 시스템까지 10개의 마이크로디그리 과정을 수료했습니다.</p>
+                <div style="margin-top: 20px;">
+                    <a href="https://bootcamp.dongyang.ac.kr/curriculum/info.do?tab_menu=0" target="_blank" rel="noopener noreferrer" style="color: var(--neon-blue); text-decoration: none; border: 1px solid var(--neon-blue-dim); padding: 8px 20px; border-radius: 20px; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; background: rgba(0, 243, 255, 0.05);" onmouseover="this.style.background='rgba(0, 243, 255, 0.15)'; this.style.boxShadow='0 0 15px rgba(0, 243, 255, 0.3)'" onmouseout="this.style.background='rgba(0, 243, 255, 0.05)'; this.style.boxShadow='none'">동양미래대학교 부트캠프 사이트로 이동 <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
             <div class="tabs-container">
@@ -120,7 +123,7 @@
                 <div class="card project-card">
                     <div class="card-glow"></div>
                     <h3><span class="highlight-badge">Project A</span> 정밀 기구 설계 및 전자 시스템 구축</h3>
-                    <div class="project-content">
+                    <div class="project-content" id="projectAContent" style="max-height: 280px; overflow: hidden; position: relative; transition: max-height 0.4s ease;">
                         <div class="detail-box">
                             <h4><i class="fas fa-cogs"></i> 기구 설계 최적화</h4>
                             <p>'기계제도' 및 'CAD기초'를 통해 조립 공차를 최적화하고, 가속도/저크 제어를 통해 진동을 억제하여 MTBF(평균 고장 간격)를 연장하는 메커니즘 설계 지식.</p>
@@ -129,6 +132,20 @@
                             <h4><i class="fas fa-wave-square"></i> 신호 무결성 및 고정밀 제어</h4>
                             <p>'전자회로' 지식을 바탕으로 임피던스 매칭을 적용해 신호 간섭(Noise)을 최소화. 모터 및 센서 연계 폐루프 제어로 위치 오차 실시간 보정.</p>
                         </div>
+                        <div class="detail-box">
+                            <h4><i class="fas fa-project-diagram"></i> 실용 기구학 (Practical Kinematics)</h4>
+                            <p>링크와 조인트의 운동(위치, 속도, 가속도)을 강체 기반으로 분석하여, 원하는 메커니즘과 기계적 움직임을 정밀하게 설계 및 구현하는 응용 역량.</p>
+                        </div>
+                        <div class="detail-box">
+                            <h4><i class="fas fa-code"></i> 로봇 자동화 핵심 프로그래밍</h4>
+                            <p><strong>C/C++:</strong> 모터 구동 등 하드웨어 밀착형 실시간 제어<br><strong>C#:</strong> 윈도우 기반 장비 UI 및 제어 시스템 운영<br><strong>Python:</strong> 데이터 처리 및 AI 모델 연동<br>세 언어의 학습을 통해 설비 자동화에 필수적인 풀스택 제어 지식을 확보.</p>
+                        </div>
+                        
+                        <!-- Read More Fade Overlay -->
+                        <div id="projectAFade" style="position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, transparent, rgba(7, 10, 19, 0.95) 90%); pointer-events: none; transition: opacity 0.4s ease;"></div>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button type="button" id="readMoreBtnA" class="inner-nav-btn" style="padding: 6px 15px; font-size: 0.85rem;">Read More <i class="fas fa-chevron-down"></i></button>
                     </div>
                 </div>
 
@@ -136,8 +153,8 @@
                     <div class="card-glow"></div>
                     <h3><span class="highlight-badge">Project B</span> 4족 보행 로봇 (캡스톤 디자인)</h3>
                     
-                    <div class="image-gallery artifact" data-img="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200">
-                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=600" alt="4족 보행 로봇 조립 증거물" class="project-img">
+                    <div class="image-gallery artifact" data-img="robot.png">
+                        <img src="robot.png" alt="4족 보행 로봇 조립 증거물" class="project-img" onerror="this.onerror=null; this.src='robot.jpg'; this.parentElement.setAttribute('data-img', 'robot.jpg');">
                         <div class="img-overlay"><i class="fas fa-search-plus"></i> 클릭하여 확대보기</div>
                     </div>
                     
@@ -190,6 +207,16 @@
             <div class="board-controls" style="display: flex; gap: 15px; justify-content: center; margin-bottom: 30px;">
                 <button type="button" class="inner-nav-btn active" id="openWriteFormBtn"><i class="fas fa-pen"></i> 글쓰기 칸</button>
                 <button type="button" class="inner-nav-btn" id="goHomeBtn"><i class="fas fa-home"></i> 홈으로 이동</button>
+                <button type="button" class="inner-nav-btn" id="contactBtn"><i class="fas fa-address-book"></i> Contact</button>
+            </div>
+
+            <!-- Contact Info Box (Hidden by default) -->
+            <div class="card" id="contactContainer" style="display: none; max-width: 450px; margin: 0 auto 30px; text-align: center; border-color: var(--neon-blue);">
+                <h3 style="color: var(--neon-blue); margin-bottom: 20px;"><i class="fas fa-id-card"></i> Contact Information</h3>
+                <ul class="neon-list" style="color: #fff; text-align: left; display: inline-block;">
+                    <li><strong>Email:</strong> ghskf155@gmail.com</li>
+                    <li><strong>Phone:</strong> 010-3682-0892</li>
+                </ul>
             </div>
 
             <div class="board-container-single" style="max-width: 800px; margin: 0 auto;">
@@ -224,6 +251,6 @@
         <div id="caption">KSLC 캡스톤 디자인 - 4족 보행 로봇 증거 자료</div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=5"></script>
 </body>
 </html>

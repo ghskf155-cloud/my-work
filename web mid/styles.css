@@ -167,11 +167,12 @@ nav { display: flex; gap: 15px; }
 }
 
 .tech-list { list-style: none; }
-.tech-list li { margin-bottom: 15px; font-size: 1.1rem; padding-left: 20px; position: relative; }
+.tech-list li { margin-bottom: 15px; font-size: 1.1rem; padding-left: 20px; position: relative; display: flex; }
 .tech-list li::before {
     content: '>'; position: absolute; left: 0; color: var(--neon-blue); font-weight: 900;
 }
-.tech-list strong { color: var(--neon-blue); display: inline-block; width: 80px; }
+.tech-list strong { color: var(--neon-blue); display: inline-block; min-width: 80px; flex-shrink: 0; vertical-align: top; margin-right: 10px; }
+#historyList strong { min-width: 110px; white-space: nowrap; }
 
 .chart-container { width: 100%; height: 350px; position: relative; }
 

@@ -3,254 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>조윤기 | AMK CE Engineer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>로봇소프트웨어과</title>
+    <!-- 폰트어썸 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=3">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="cyber-grid"></div>
-
-    <header class="gnb">
-        <div class="logo">
-            <span class="text-blue">AMK</span> CE PORTFOLIO
+    <!-- 상단 내비게이션 바 -->
+    <header class="header">
+        <div class="header-container">
+            <h1 class="logo"><a href="index.html">로봇소프트웨어과</a></h1>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="#">학과소개</a></li>
+                    <li><a href="#">교육과정</a></li>
+                    <li><a href="#">교수소개</a></li>
+                    <li><a href="#">학과앨범</a></li>
+                    <li><a href="#">학과공지</a></li>
+                    <li><a href="#">전공동아리</a></li>
+                    <!-- 자유게시판 링크 추가 -->
+                    <li><a href="board.html" class="highlight-menu">자유게시판</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <button class="nav-btn active" data-target="home"><i class="fas fa-home"></i> HOME</button>
-            <button class="nav-btn" data-target="micro"><i class="fas fa-layer-group"></i> MICRO-DEGREE</button>
-            <button class="nav-btn" data-target="hardware"><i class="fas fa-microchip"></i> HARDWARE</button>
-            <button class="nav-btn" data-target="ai"><i class="fas fa-brain"></i> AI INNOVATION</button>
-            <button class="nav-btn" data-target="board"><i class="fas fa-comments"></i> GUESTBOOK</button>
-        </nav>
     </header>
 
-    <main class="content-container">
-        <!-- Home -->
-        <section id="home" class="page active">
-            <div class="hero">
-                <h1 class="glitch" data-text="정밀한 기계적 해석과 스마트한 제어의 융합">정밀한 기계적 해석과 스마트한 제어의 융합</h1>
-                <p class="subtitle">어플라이드 머티리얼즈의 혁신을 잇는 장비 엔지니어, <span class="highlight-text">조윤기</span>입니다.</p>
-            </div>
-            
-            <div class="dashboard-grid">
-                <div class="card profile-card">
-                    <h2><i class="far fa-id-badge"></i> IDENTITY</h2>
-                    <ul class="tech-list">
-                        <li><strong>Name</strong> 조윤기</li>
-                        <li><strong>Univ</strong> <a href="https://www.dongyang.ac.kr/dmu/4479/subview.do" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(0, 243, 255, 0.5); padding-bottom: 2px; transition: color 0.3s;" onmouseover="this.style.color='#00f3ff'" onmouseout="this.style.color='inherit'">동양미래대학교 로봇소프트웨어과 <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px; opacity: 0.8;"></i></a></li>
-                        <li><strong>Core</strong> 하드웨어의 물리적 견고함 + AI/클라우드 제어 편의성</li>
-                        <li><strong>Vision</strong> 기구 설계 역량과 소프트웨어 제어 역량을 겸비하여, 오차를 보정하고 노이즈를 통제하는 'T자형 실무 인재'</li>
-                    </ul>
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="main-content">
+        <div class="grid-container">
+            <!-- 1. 메인 히어로 배너 (좌측 상단) -->
+            <section class="hero-section">
+                <div class="hero-bg"></div>
+                <div class="hero-content">
+                    <h2>로봇소프트웨어과</h2>
+                    <p>로봇소프트웨어 분야를 이끌 인재양성의 중심</p>
+                    <h3 class="hero-eng">Robot Software</h3>
                 </div>
-                
-                <div class="card chart-card">
-                    <h2><i class="fas fa-bullseye"></i> CORE TECH STACK (학점)</h2>
-                    <div class="chart-container">
-                        <canvas id="skillsChart"></canvas>
-                    </div>
+                <div class="hero-info-bar">
+                    <span><i class="fa-solid fa-location-dot"></i> 4호관 206호</span>
+                    <span><i class="fa-solid fa-phone"></i> 02-2610-1832</span>
+                    <span><i class="fa-solid fa-envelope"></i> yjyang@dongyang.ac.kr</span>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Micro-Degree -->
-        <section id="micro" class="page">
-            <div class="section-header">
-                <h2>초급부터 고급까지, 현장 투입을 위한 10단계 징검다리</h2>
-                <p>반도체 물리 이론부터 장비 제어, 자동화 통신 시스템까지 10개의 마이크로디그리 과정을 수료했습니다.</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://bootcamp.dongyang.ac.kr/curriculum/info.do?tab_menu=0" target="_blank" rel="noopener noreferrer" style="color: var(--neon-blue); text-decoration: none; border: 1px solid var(--neon-blue-dim); padding: 8px 20px; border-radius: 20px; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; background: rgba(0, 243, 255, 0.05);" onmouseover="this.style.background='rgba(0, 243, 255, 0.15)'; this.style.boxShadow='0 0 15px rgba(0, 243, 255, 0.3)'" onmouseout="this.style.background='rgba(0, 243, 255, 0.05)'; this.style.boxShadow='none'">동양미래대학교 부트캠프 사이트로 이동 <i class="fas fa-external-link-alt"></i></a>
+            <!-- 2. 학과 공지 (우측 상단) -->
+            <section class="notice-section">
+                <div class="section-header">
+                    <h3>학과공지</h3>
+                    <a href="#" class="more-btn"><i class="fa-solid fa-plus"></i></a>
                 </div>
-            </div>
-
-            <div class="tabs-container">
-                <div class="inner-tabs">
-                    <button class="inner-nav-btn active" data-target="level-1">초급 기초</button>
-                    <button class="inner-nav-btn" data-target="level-2">중급 심화</button>
-                    <button class="inner-nav-btn" data-target="level-3">고급 실무</button>
-                </div>
-
-                <div class="tab-content-area">
-                    <div id="level-1" class="inner-page active">
-                        <div class="card glass-card">
-                            <div class="badge">교과형 역량</div>
-                            <h3>반도체 및 회로 기초 설계</h3>
-                            <ul class="neon-list">
-                                <li><strong>반도체기초:</strong> 반도체 소자의 물리적 특성 및 기초 동작 구동원리 이해</li>
-                                <li><strong>반도체공학:</strong> 공정 프로세스 8대 공정 및 장비의 단위 구조 학습</li>
-                                <li><strong>집적회로설계관련기초:</strong> 미세 회로 설계의 기반 및 아날로그/디지털 신호 처리의 기본기 확립</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div id="level-2" class="inner-page">
-                        <div class="card glass-card">
-                            <div class="badge">교과/자격 연계</div>
-                            <h3>시스템 제어 및 환경 안전 관리</h3>
-                            <ul class="neon-list">
-                                <li><strong>반도체설비제어교과:</strong> 모터 드라이버 및 센서 연동, 장비 파라미터 미세 튜닝 제어</li>
-                                <li><strong>반도체설비유지보수교과:</strong> 예방 정비(PM) 절차 및 하드웨어 트러블슈팅 방법론</li>
-                                <li><strong>Solidworks CAD 해독:</strong> 3D 기구 도면 분석을 통한 파트 역설계 및 리뷰 역량</li>
-                                <li><strong>위험물/산업안전:</strong> 반도체 클린룸 화학물질 다룸 및 설비 안전 관리 지식</li>
-                                <li><strong>자격증 연계 특강:</strong> 전공 자격 취득을 통한 현장 실무의 이론적 토대 강화</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div id="level-3" class="inner-page">
-                        <div class="card glass-card">
-                            <div class="badge">몰입형/실무 성과</div>
-                            <h3>현장 맞춤형 자동화 로보틱스 적용</h3>
-                            <ul class="neon-list">
-                                <li><strong>두산로보틱스 협동로봇 교육:</strong> 매니퓰레이터 티칭 조작 및 주변 안전 시스템 연동 통제</li>
-                                <li><strong>PLC 제어 실무:</strong> 래더 로직을 활용한 시퀀스 동작 제어 및 설비간 I/O 통신 최적화</li>
-                                <li><strong>현장 실무 집중 교육:</strong> 데모 장비를 활용한 PM 실습 및 에러 로그 원인 분석</li>
-                                <li><strong>산업체 인사 참여 교육:</strong> 현직 전문가의 피드백을 수용하여 현장 문제 해결 능력 체화</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hardware & Control -->
-        <section id="hardware" class="page">
-            <div class="section-header">
-                <h2>견고한 하드웨어 토대 위에 정밀 제어를 구현하다</h2>
-            </div>
-            
-            <div class="project-grid">
-                <div class="card project-card">
-                    <div class="card-glow"></div>
-                    <h3><span class="highlight-badge">Project A</span> 정밀 기구 설계 및 전자 시스템 구축</h3>
-                    <div class="project-content" id="projectAContent" style="max-height: 280px; overflow: hidden; position: relative; transition: max-height 0.4s ease;">
-                        <div class="detail-box">
-                            <h4><i class="fas fa-cogs"></i> 기구 설계 최적화</h4>
-                            <p>'기계제도' 및 'CAD기초'를 통해 조립 공차를 최적화하고, 가속도/저크 제어를 통해 진동을 억제하여 MTBF(평균 고장 간격)를 연장하는 메커니즘 설계 지식.</p>
-                        </div>
-                        <div class="detail-box">
-                            <h4><i class="fas fa-wave-square"></i> 신호 무결성 및 고정밀 제어</h4>
-                            <p>'전자회로' 지식을 바탕으로 임피던스 매칭을 적용해 신호 간섭(Noise)을 최소화. 모터 및 센서 연계 폐루프 제어로 위치 오차 실시간 보정.</p>
-                        </div>
-                        <div class="detail-box">
-                            <h4><i class="fas fa-project-diagram"></i> 실용 기구학 (Practical Kinematics)</h4>
-                            <p>링크와 조인트의 운동(위치, 속도, 가속도)을 강체 기반으로 분석하여, 원하는 메커니즘과 기계적 움직임을 정밀하게 설계 및 구현하는 응용 역량.</p>
-                        </div>
-                        <div class="detail-box">
-                            <h4><i class="fas fa-code"></i> 로봇 자동화 핵심 프로그래밍</h4>
-                            <p><strong>C/C++:</strong> 모터 구동 등 하드웨어 밀착형 실시간 제어<br><strong>C#:</strong> 윈도우 기반 장비 UI 및 제어 시스템 운영<br><strong>Python:</strong> 데이터 처리 및 AI 모델 연동<br>세 언어의 학습을 통해 설비 자동화에 필수적인 풀스택 제어 지식을 확보.</p>
-                        </div>
-                        
-                        <!-- Read More Fade Overlay -->
-                        <div id="projectAFade" style="position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, transparent, rgba(7, 10, 19, 0.95) 90%); pointer-events: none; transition: opacity 0.4s ease;"></div>
-                    </div>
-                    <div style="text-align: center; margin-top: 15px;">
-                        <button type="button" id="readMoreBtnA" class="inner-nav-btn" style="padding: 6px 15px; font-size: 0.85rem;">Read More <i class="fas fa-chevron-down"></i></button>
-                    </div>
-                </div>
-
-                <div class="card project-card">
-                    <div class="card-glow"></div>
-                    <h3><span class="highlight-badge">Project B</span> 4족 보행 로봇 (캡스톤 디자인)</h3>
-                    
-                    <div class="image-gallery artifact" data-img="robot.png">
-                        <img src="robot.png" alt="4족 보행 로봇 조립 증거물" class="project-img" onerror="this.onerror=null; this.src='robot.jpg'; this.parentElement.setAttribute('data-img', 'robot.jpg');">
-                        <div class="img-overlay"><i class="fas fa-search-plus"></i> 클릭하여 확대보기</div>
-                    </div>
-                    
-                    <div class="project-content mt-4">
-                        <ul class="neon-list compact">
-                            <li><strong>팀워크:</strong> 브레인스토밍으로 조기 소통 장벽을 허물고 0에서 1을 만드는 백지상태 설계를 완수. (조윤기: 서기 100% 진행)</li>
-                            <li><strong>기구학 적용:</strong> 크랭크 메커니즘과 복합 링크 구조를 통해 모터의 회전 운동을 다리의 보행 운동으로 변환.</li>
-                            <li><strong>산학 멘토링:</strong> 메이커리언 석기환 대표 등 피드백을 도입, 액추에이터 토크 부족 등 한계 극복.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- AI Innovation -->
-        <section id="ai" class="page">
-            <div class="section-header">
-                <h2>시스템 지휘자(Architect)의 시야로 장비 유지보수의 미래를 그리다</h2>
-            </div>
-            
-            <div class="innovation-grid">
-                <div class="card innovation-card hover-lift">
-                    <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
-                    <h3>산출물 기반 고장 예측</h3>
-                    <p class="description">에러 로그 데이터와 메커니즘 녹화물 등 멀티모달 데이터를 AI 모델이 학습해 고장 전조 증상을 파악하는 <strong>예지 보전 시스템</strong> 제안.</p>
-                </div>
-                
-                <div class="card innovation-card hover-lift">
-                    <div class="icon-wrapper"><i class="fas fa-server"></i></div>
-                    <h3>클라우드 연동 부품 관리</h3>
-                    <p class="description">Next.js + Firebase DB를 연동해 소모성 파츠 수명을 실시간 동기화하고, 최적의 교체 시기를 알림으로써 <strong>Downtime 최소화</strong>.</p>
-                </div>
-                
-                <div class="card innovation-card hover-lift">
-                    <div class="icon-wrapper"><i class="fas fa-robot"></i></div>
-                    <h3>트러블슈팅 AI 챗봇</h3>
-                    <p class="description">복잡한 장비 매뉴얼과 오류 코드를 Gemini API (RAG)에 임베딩, 태블릿에서 대응 절차를 즉각 브리핑하는 현장 엔지니어 어시스턴트.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-        <!-- Guestbook / Board -->
-        <section id="board" class="page">
-            <div class="section-header">
-                <h2>Visitors & Guestbook</h2>
-                <p>자유롭게 남기고 싶은 말씀이나 요청사항을 남겨주세요.</p>
-            </div>
-            
-            <div class="board-controls" style="display: flex; gap: 15px; justify-content: center; margin-bottom: 30px;">
-                <button type="button" class="inner-nav-btn active" id="openWriteFormBtn"><i class="fas fa-pen"></i> 글쓰기 칸</button>
-                <button type="button" class="inner-nav-btn" id="goHomeBtn"><i class="fas fa-home"></i> 홈으로 이동</button>
-                <button type="button" class="inner-nav-btn" id="contactBtn"><i class="fas fa-address-book"></i> Contact</button>
-            </div>
-
-            <!-- Contact Info Box (Hidden by default) -->
-            <div class="card" id="contactContainer" style="display: none; max-width: 450px; margin: 0 auto 30px; text-align: center; border-color: var(--neon-blue);">
-                <h3 style="color: var(--neon-blue); margin-bottom: 20px;"><i class="fas fa-id-card"></i> Contact Information</h3>
-                <ul class="neon-list" style="color: #fff; text-align: left; display: inline-block;">
-                    <li><strong>Email:</strong> ghskf155@gmail.com</li>
-                    <li><strong>Phone:</strong> 010-3682-0892</li>
+                <ul class="notice-list">
+                    <li>
+                        <a href="#">
+                            <p class="notice-title">[반도체협회] 부트캠프 전문대학 대상 ASM 코리아 3차 채용 공고(부트캠프 대학 우선 채용)</p>
+                            <span class="notice-date">2026.04.28</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <p class="notice-title">2026학년도 1학기 「일반 질병」 출석 인정 절차 변경 안내</p>
+                            <span class="notice-date">2026.04.23</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <p class="notice-title">스마트팩토리실무(C4강좌) 휴보강 공지</p>
+                            <span class="notice-date">2026.04.17</span>
+                        </a>
+                    </li>
                 </ul>
-            </div>
+            </section>
 
-            <div class="board-container-single" style="max-width: 800px; margin: 0 auto;">
-                
-                <div class="card board-list-card" id="boardListContainer">
-                    <h3><i class="fas fa-list"></i> 등록된 글 목록</h3>
-                    <div id="boardList" class="board-list">
-                        <!-- JS 렌더링 영역 -->
+            <!-- 3. 주요 서비스 (우측 중단) -->
+            <section class="service-section">
+                <div class="section-header">
+                    <h3>주요 서비스</h3>
+                </div>
+                <div class="service-grid">
+                    <a href="#" class="service-item">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>e 서비스</span>
+                    </a>
+                    <a href="#" class="service-item">
+                        <i class="fa-solid fa-book"></i>
+                        <span>도서관</span>
+                    </a>
+                    <a href="#" class="service-item">
+                        <i class="fa-solid fa-laptop"></i>
+                        <span>수강신청</span>
+                    </a>
+                    <a href="#" class="service-item">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>증명서 발급</span>
+                    </a>
+                    <a href="#" class="service-item">
+                        <i class="fa-brands fa-microsoft"></i>
+                        <span>MS오피스 365</span>
+                    </a>
+                    <a href="#" class="service-item">
+                        <i class="fa-solid fa-id-card-clip"></i>
+                        <span>학생종합관리<br>DOIT</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 4. 전공동아리 (좌측 하단) -->
+            <section class="club-section">
+                <div class="club-tabs">
+                    <span class="tab-label">전공동아리</span>
+                    <button class="active">MAS</button>
+                    <button>MCA</button>
+                    <button>MoAS</button>
+                    <button>SMART</button>
+                    <button>UR</button>
+                    <button>지능형로봇</button>
+                </div>
+                <div class="club-content">
+                    <div class="club-text">
+                        <h3>MAS</h3>
+                        <p>MAS는 학교에서 배우는 것 뿐만 아니라 더 나아가 사회에 도움이 될 수 있는 로봇을 직접 만들어 각종 대회에 출전해 학생들끼리 서로 협업을 하며 자신의 전공지식과 역량을 같이 키워나가는 동아리입니다.</p>
+                    </div>
+                    <div class="club-image">
+                        <!-- 임시 로봇 하드웨어 이미지 -->
+                        <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=600&auto=format&fit=crop" alt="MAS 동아리 로봇">
                     </div>
                 </div>
+            </section>
 
-                <div class="card board-form-card" id="boardFormContainer" style="display: none; margin-top: 30px;">
-                    <h3><i class="fas fa-pen"></i> 방명록 작성/수정</h3>
-                    <form id="boardForm">
-                        <input type="hidden" id="boardId">
-                        <input type="text" id="boardName" placeholder="작성자 이름" required>
-                        <input type="password" id="boardPassword" placeholder="비밀번호 (수정/삭제 확인용)" autocomplete="new-password" required>
-                        <textarea id="boardContent" placeholder="기록을 남겨주세요..." required></textarea>
-                        <div class="board-form-actions">
-                            <button type="submit" id="boardSubmitBtn" class="inner-nav-btn active" style="flex: 1;">등록 완료</button>
-                            <button type="button" id="boardCancelBtn" class="inner-nav-btn" style="flex: 1;">작성 취소</button>
-                        </div>
-                    </form>
+            <!-- 5. 학과 앨범 (우측 하단) -->
+            <section class="album-section">
+                <div class="section-header">
+                    <h3>학과앨범</h3>
                 </div>
-                
-            </div>
-        </section>
-
-    <div id="imageModal" class="modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="expandedImg" alt="확대된 아티팩트 이미지">
-        <div id="caption">KSLC 캡스톤 디자인 - 4족 보행 로봇 증거 자료</div>
-    </div>
-
-    <script src="script.js?v=5"></script>
+                <div class="album-content empty-state">
+                    <p>최근 게시물이(가) 없습니다.</p>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

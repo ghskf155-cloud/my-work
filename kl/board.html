@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로봇소프트웨어과 - 자유게시판</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 상단 내비게이션 바 -->
+    <header class="header">
+        <div class="header-container">
+            <h1 class="logo"><a href="index.html">로봇소프트웨어과</a></h1>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="index.html">학과소개</a></li>
+                    <li><a href="index.html">교육과정</a></li>
+                    <li><a href="index.html">교수소개</a></li>
+                    <li><a href="index.html">학과앨범</a></li>
+                    <li><a href="index.html">학과공지</a></li>
+                    <li><a href="index.html">전공동아리</a></li>
+                    <li><a href="board.html" class="highlight-menu">자유게시판</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="board-container">
+            <div class="board-header">
+                <h2>자유게시판</h2>
+                <div id="board-header-actions">
+                    <button id="btn-show-write" class="btn"><i class="fa-solid fa-pen"></i> 글쓰기</button>
+                </div>
+            </div>
+
+            <!-- 1. 게시판 목록 화면 -->
+            <div id="view-list">
+                <table class="board-list">
+                    <thead>
+                        <tr>
+                            <th width="60%">제목</th>
+                            <th width="20%">작성자</th>
+                            <th width="20%">작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody id="post-list-body">
+                        <!-- 게시글이 여기에 동적으로 추가됩니다. -->
+                        <tr><td colspan="3" style="text-align:center; padding:20px;">로딩 중이거나 데이터베이스 설정이 필요합니다. (firebase-config.js 확인)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 2. 글쓰기 / 수정 화면 -->
+            <div id="view-write" class="hidden">
+                <form id="post-form">
+                    <input type="hidden" id="edit-post-id" value="">
+                    <div class="form-group">
+                        <label>제목</label>
+                        <input type="text" id="post-title" class="form-control" required placeholder="제목을 입력하세요">
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;">
+                            <label>작성자</label>
+                            <input type="text" id="post-author" class="form-control" required placeholder="이름">
+                        </div>
+                        <div class="form-group" style="flex:1;">
+                            <label>비밀번호 (수정/삭제용)</label>
+                            <input type="password" id="post-password" class="form-control" required placeholder="비밀번호">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>내용</label>
+                        <textarea id="post-content" class="form-control" required placeholder="내용을 입력하세요"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="btn-cancel-write" class="btn btn-secondary">취소</button>
+                        <button type="submit" class="btn">저장</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 3. 게시글 상세 화면 -->
+            <div id="view-detail" class="hidden">
+                <div class="post-detail">
+                    <h3 id="detail-title" class="post-title">제목</h3>
+                    <div class="post-meta">
+                        <span id="detail-author"><i class="fa-solid fa-user"></i> 작성자</span>
+                        <span id="detail-date"><i class="fa-regular fa-clock"></i> 날짜</span>
+                    </div>
+                    <div id="detail-content" class="post-content">내용</div>
+                    <div class="post-actions">
+                        <button type="button" id="btn-back-list" class="btn btn-secondary">목록</button>
+                        <button type="button" id="btn-edit-post" class="btn">수정</button>
+                        <button type="button" id="btn-delete-post" class="btn btn-danger">삭제</button>
+                    </div>
+                </div>
+
+                <!-- 댓글 섹션 -->
+                <div class="comments-section">
+                    <h4>댓글</h4>
+                    <form id="comment-form" class="comment-form">
+                        <div class="comment-input-group">
+                            <div style="display:flex; flex-direction:column; gap:5px;">
+                                <input type="text" id="comment-author" class="form-control" required placeholder="작성자">
+                                <input type="password" id="comment-password" class="form-control" required placeholder="비번">
+                            </div>
+                            <textarea id="comment-content" class="form-control" required placeholder="댓글을 남겨보세요"></textarea>
+                        </div>
+                        <button type="submit" class="btn">등록</button>
+                    </form>
+                    <ul id="comment-list" class="comment-list">
+                        <!-- 댓글이 여기에 추가됩니다 -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 비밀번호 확인 모달 -->
+    <div id="pwd-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title">비밀번호 확인</h3>
+            <p style="font-size:13px; color:#666; margin-top:5px;">글 작성시 입력한 비밀번호를 입력하세요.</p>
+            <input type="password" id="modal-pwd-input" class="form-control" placeholder="비밀번호">
+            <div class="form-actions" style="justify-content: center;">
+                <button type="button" id="btn-modal-cancel" class="btn btn-secondary">취소</button>
+                <button type="button" id="btn-modal-confirm" class="btn">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Compat SDKs (로컬 파일 실행 시 가장 안정적임) -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics-compat.js"></script>
+    
+    <!-- 프로젝트 스크립트 -->
+    <script src="firebase-config.js"></script>
+    <script src="board.js"></script>
+</body>
+</html>

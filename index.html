@@ -1,147 +1,312 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로봇소프트웨어과</title>
-    <!-- 폰트어썸 아이콘 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Noto Sans KR -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>HUMANICS | The Next Generation Humanoid</title>
+    
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        gray: {
+                            950: '#0a0a0a',
+                            900: '#171717',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Three.js (Vanilla) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <!-- Prism.js for Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 </head>
-<body>
-    <!-- 상단 내비게이션 바 -->
-    <header class="header">
-        <div class="header-container">
-            <h1 class="logo"><a href="index.html">로봇소프트웨어과</a></h1>
-            <nav class="gnb">
-                <ul>
-                    <li><a href="#">학과소개</a></li>
-                    <li><a href="#">교육과정</a></li>
-                    <li><a href="#">교수소개</a></li>
-                    <li><a href="#">학과앨범</a></li>
-                    <li><a href="#">학과공지</a></li>
-                    <li><a href="#">전공동아리</a></li>
-                    <!-- 자유게시판 링크 추가 -->
-                    <li><a href="board.html" class="highlight-menu">자유게시판</a></li>
-                </ul>
-            </nav>
+<body class="bg-gray-950 text-white font-sans antialiased overflow-x-hidden selection:bg-white selection:text-black">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 px-8 py-6 flex justify-between items-center">
+        <div class="text-2xl font-black tracking-tighter">HUMANICS</div>
+        <ul class="hidden md:flex gap-8 text-sm font-medium opacity-80">
+            <li class="hover:opacity-100 cursor-pointer transition-opacity"><a href="#timeline-wrapper" class="block w-full h-full">비전</a></li>
+            <li class="hover:opacity-100 cursor-pointer transition-opacity"><a href="#section-brain" class="block w-full h-full">AI 두뇌</a></li>
+            <li class="hover:opacity-100 cursor-pointer transition-opacity"><a href="#section-anatomy" class="block w-full h-full">하드웨어</a></li>
+            <li class="hover:opacity-100 cursor-pointer transition-opacity"><a href="#section-developers" class="block w-full h-full">개발자 허브</a></li>
+        </ul>
+        <button class="px-5 py-2 bg-white text-black rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors">
+            사전예약
+        </button>
+    </nav>
+
+    <!-- Section 1: Hero & Timeline (Horizontal Scroll) -->
+    <section id="section-hero" class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden">
+        <!-- Placeholder for Cinematic Video -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20 z-0 grayscale"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-gray-950/80 to-gray-950 z-0"></div>
+        
+        <h1 class="text-[8vw] leading-none font-black tracking-tighter text-center z-10">
+            새로운 시대의 서막 <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">AGI의 도래</span>
+        </h1>
+        <p class="mt-8 text-xl text-gray-400 max-w-2xl text-center z-10 px-4">
+            휴머닉스(HUMANICS)는 인간의 잠재력을 극대화하도록 설계된 세계 최초의 완전 통합형 범용 휴머노이드입니다.
+        </p>
+    </section>
+
+    <!-- Horizontal Timeline Container -->
+    <style>#timeline-wrapper::-webkit-scrollbar { display: none; }</style>
+    <section id="timeline-wrapper" class="relative w-full h-screen overflow-x-auto overflow-y-hidden bg-gray-950 cursor-grab select-none" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <div id="timeline-container" class="flex w-[300vw] h-full">
+            <div class="w-screen h-full flex-shrink-0 flex flex-col justify-center px-12 md:px-24 border-r border-gray-800 relative overflow-hidden group">
+                <div class="text-[15vw] font-black text-gray-800/20 absolute -left-10 -bottom-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none">1990</div>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6">기계의 시대</h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-md">반복적이고 고도의 정밀도가 필요한 작업에 집중된 산업용 로봇. 인간과 분리되고 제한적이며 결정론적이었습니다.</p>
+            </div>
+            <div class="w-screen h-full flex-shrink-0 flex flex-col justify-center px-12 md:px-24 border-r border-gray-800 relative overflow-hidden group">
+                <div class="text-[15vw] font-black text-gray-800/20 absolute -left-10 -bottom-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none">2020</div>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6">제한적 인공지능</h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-md">시각 및 경로 계획에 신경망이 도입되기 시작했습니다. 하지만 여전히 특정 작업에 국한되고 제약이 많았습니다.</p>
+            </div>
+            <div class="w-screen h-full flex-shrink-0 flex flex-col justify-center px-12 md:px-24 relative overflow-hidden group">
+                <div class="text-[15vw] font-black text-white/5 absolute -left-10 -bottom-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none">NOW</div>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6 text-white">휴머닉스의 시대</h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-md">물리적 형태를 제어하는 엔드투엔드(End-to-end) 인공신경망. 진정한 자율성. 그리고 자연스러운 상호작용.</p>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <!-- 메인 콘텐츠 영역 -->
-    <main class="main-content">
-        <div class="grid-container">
-            <!-- 1. 메인 히어로 배너 (좌측 상단) -->
-            <section class="hero-section">
-                <div class="hero-bg"></div>
-                <div class="hero-content">
-                    <h2>로봇소프트웨어과</h2>
-                    <p>로봇소프트웨어 분야를 이끌 인재양성의 중심</p>
-                    <h3 class="hero-eng">Robot Software</h3>
+    <!-- Section 2: AI Brain (Three.js Particles) -->
+    <section id="section-brain" class="relative w-full h-screen bg-black overflow-hidden cursor-ew-resize select-none">
+        <div class="relative h-full w-full flex items-center">
+            <!-- Three.js Canvas Container -->
+            <div id="brain-canvas-container" class="absolute inset-0 z-0 pointer-events-none"></div>
+            
+            <div class="relative z-10 w-full max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-12">
+                <div class="max-w-xl">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-6">인지 아키텍처</h2>
+                    <p class="text-xl text-gray-400 mb-8">
+                        우리의 신경 엔진은 초당 수백만 개의 변수를 처리합니다. 혼돈 속에서 체계적인 사고를 이끌어내며, AI 두뇌는 주변 환경을 지속적으로 학습하고 적응합니다.
+                    </p>
                 </div>
-                <div class="hero-info-bar">
-                    <span><i class="fa-solid fa-location-dot"></i> 4호관 206호</span>
-                    <span><i class="fa-solid fa-phone"></i> 02-2610-1832</span>
-                    <span><i class="fa-solid fa-envelope"></i> yjyang@dongyang.ac.kr</span>
-                </div>
-            </section>
-
-            <!-- 2. 학과 공지 (우측 상단) -->
-            <section class="notice-section">
-                <div class="section-header">
-                    <h3>학과공지</h3>
-                    <a href="#" class="more-btn"><i class="fa-solid fa-plus"></i></a>
-                </div>
-                <ul class="notice-list">
-                    <li>
-                        <a href="#">
-                            <p class="notice-title">[반도체협회] 부트캠프 전문대학 대상 ASM 코리아 3차 채용 공고(부트캠프 대학 우선 채용)</p>
-                            <span class="notice-date">2026.04.28</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p class="notice-title">2026학년도 1학기 「일반 질병」 출석 인정 절차 변경 안내</p>
-                            <span class="notice-date">2026.04.23</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p class="notice-title">스마트팩토리실무(C4강좌) 휴보강 공지</p>
-                            <span class="notice-date">2026.04.17</span>
-                        </a>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 3. 주요 서비스 (우측 중단) -->
-            <section class="service-section">
-                <div class="section-header">
-                    <h3>주요 서비스</h3>
-                </div>
-                <div class="service-grid">
-                    <a href="#" class="service-item">
-                        <i class="fa-solid fa-globe"></i>
-                        <span>e 서비스</span>
-                    </a>
-                    <a href="#" class="service-item">
-                        <i class="fa-solid fa-book"></i>
-                        <span>도서관</span>
-                    </a>
-                    <a href="#" class="service-item">
-                        <i class="fa-solid fa-laptop"></i>
-                        <span>수강신청</span>
-                    </a>
-                    <a href="#" class="service-item">
-                        <i class="fa-solid fa-file-lines"></i>
-                        <span>증명서 발급</span>
-                    </a>
-                    <a href="#" class="service-item">
-                        <i class="fa-brands fa-microsoft"></i>
-                        <span>MS오피스 365</span>
-                    </a>
-                    <a href="#" class="service-item">
-                        <i class="fa-solid fa-id-card-clip"></i>
-                        <span>학생종합관리<br>DOIT</span>
-                    </a>
-                </div>
-            </section>
-
-            <!-- 4. 전공동아리 (좌측 하단) -->
-            <section class="club-section">
-                <div class="club-tabs">
-                    <span class="tab-label">전공동아리</span>
-                    <button class="active">MAS</button>
-                    <button>MCA</button>
-                    <button>MoAS</button>
-                    <button>SMART</button>
-                    <button>UR</button>
-                    <button>지능형로봇</button>
-                </div>
-                <div class="club-content">
-                    <div class="club-text">
-                        <h3>MAS</h3>
-                        <p>MAS는 학교에서 배우는 것 뿐만 아니라 더 나아가 사회에 도움이 될 수 있는 로봇을 직접 만들어 각종 대회에 출전해 학생들끼리 서로 협업을 하며 자신의 전공지식과 역량을 같이 키워나가는 동아리입니다.</p>
+                
+                <!-- Data Stream Overlay -->
+                <div class="w-full md:w-96 h-96 border border-white/10 bg-black/40 backdrop-blur-md p-6 rounded-2xl font-mono text-xs text-green-400 overflow-hidden relative shadow-2xl">
+                    <div class="absolute top-4 left-4 right-4 flex justify-between text-gray-500 mb-4 border-b border-white/10 pb-2">
+                        <span>SYSTEM.LOG</span>
+                        <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>LIVE</span>
                     </div>
-                    <div class="club-image">
-                        <!-- 임시 로봇 하드웨어 이미지 -->
-                        <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=600&auto=format&fit=crop" alt="MAS 동아리 로봇">
+                    <div id="data-stream" class="mt-10 flex flex-col gap-2">
+                        <!-- JS will inject logs here -->
                     </div>
                 </div>
-            </section>
-
-            <!-- 5. 학과 앨범 (우측 하단) -->
-            <section class="album-section">
-                <div class="section-header">
-                    <h3>학과앨범</h3>
-                </div>
-                <div class="album-content empty-state">
-                    <p>최근 게시물이(가) 없습니다.</p>
-                </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Section 3: Anatomy (Exploded View) -->
+    <section id="section-anatomy" class="relative w-full h-screen bg-[#050505] overflow-hidden cursor-ew-resize select-none">
+        <div class="relative h-full w-full flex items-center justify-center">
+            <!-- Anatomy Canvas -->
+            <div id="anatomy-canvas-container" class="absolute inset-0 z-0"></div>
+            
+            <!-- Information Popovers -->
+            <div id="popover-actuator" class="fixed opacity-0 pointer-events-none bg-white/10 backdrop-blur-2xl border border-white/20 p-6 rounded-2xl w-80 shadow-2xl transition-all duration-300 transform -translate-y-1/2 z-50">
+                <h3 class="text-white font-bold text-xl mb-2">QDD 액추에이터</h3>
+                <p class="text-gray-300 text-sm">유례없는 출력 대 중량비와 인간과 같은 유연성을 제공하는 맞춤형 QDD(Quasi-Direct Drive) 액추에이터입니다.</p>
+                <div class="mt-4 pt-4 border-t border-white/10 flex justify-between text-xs font-mono text-gray-400">
+                    <span>최대 토크: 250Nm</span>
+                    <span>무게: 1.2kg</span>
+                </div>
+            </div>
+            
+            <div class="relative z-10 pointer-events-none w-full max-w-7xl mx-auto px-8 flex justify-between items-end pb-24 h-full">
+                <div class="max-w-md">
+                    <h2 class="text-5xl font-bold mb-4">하드웨어 엔지니어링</h2>
+                    <p class="text-gray-400 text-lg">스크롤하여 내부 구조를 탐색해 보세요. 붉게 빛나는 액추에이터 부품 위에 마우스를 올리면 상세 스펙을 확인할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Safety & Developer Hub -->
+    <section id="section-developers" class="relative w-full bg-[#0a0a0a] py-32 px-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-24 text-center">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">개발자를 위한 플랫폼.<br>본질적인 안전 설계.</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    광범위한 SDK와 원활하게 통합됩니다. 모든 유닛에는 엄격한 안전 규정 준수 및 비상 정지(E-stop) 메커니즘이 하드코딩되어 있습니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Trust & Safety Infographic -->
+                <div class="bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-[2rem] p-10 md:p-12 relative overflow-hidden group shadow-2xl">
+                    <div class="absolute -top-32 -right-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700 pointer-events-none"></div>
+                    <h3 class="text-3xl font-bold mb-10">안전 컴플라이언스</h3>
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">하드웨어 비상 정지</h4>
+                                <p class="text-gray-400 mt-2 leading-relaxed">위급 상황 시 모든 소프트웨어 계층을 우회하여 즉각적으로 전원을 차단하는 독립적인 안전 회로입니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">충돌 방지 시스템</h4>
+                                <p class="text-gray-400 mt-2 leading-relaxed">LiDAR 및 ToF(Time-of-Flight) 센서를 중복으로 구성하여 밀리미터 단위의 완벽한 공간 인식 능력을 보장합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Example (Stripe Style) -->
+                <div class="bg-[#1d1f21] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl flex flex-col h-full max-h-[500px]">
+                    <div class="bg-[#151618] px-6 py-4 flex items-center gap-2 border-b border-white/5">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="ml-4 text-sm font-mono text-gray-500">humanics_control.py</span>
+                    </div>
+                    <div class="p-6 overflow-auto flex-grow text-sm md:text-base">
+                        <pre><code class="language-python">import humanics
+from humanics.control import MotionManager
+
+# Initialize the humanoid interface
+robot = humanics.connect("192.168.1.100")
+
+# Enable AI safety constraints
+robot.safety.enable_collision_avoidance(True)
+robot.safety.set_max_velocity(1.5) # m/s
+
+# Execute high-level command
+def fetch_object(target_name):
+    # Vision model interprets the environment
+    target_pose = robot.vision.find(target_name)
+    
+    if target_pose:
+        # Neural motion planner generates smooth path
+        robot.motion.navigate_to(target_pose)
+        robot.manipulation.grasp(target_name)
+        
+fetch_object("manufacturing_tool_A")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Case Studies (Bento Box) -->
+    <section id="section-cases" class="w-full py-32 px-8 bg-[#050505]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16">기업용 활용 사례</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[350px]">
+                
+                <!-- Bento Item 1 -->
+                <div class="bento-item col-span-1 md:col-span-2 rounded-[2rem] bg-gray-900 border border-white/5 p-10 relative overflow-hidden group cursor-pointer">
+                    <div class="glow-effect absolute w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10 flex flex-col h-full justify-between">
+                        <div>
+                            <span class="px-4 py-1.5 bg-white/10 rounded-full text-xs font-bold tracking-wider uppercase text-blue-300">제조업</span>
+                            <h3 class="text-4xl font-bold mt-6">자동차 조립 라인</h3>
+                            <p class="text-gray-400 mt-4 max-w-md text-lg">인간 작업자와 함께 기존 조립 라인에 완벽하게 통합되어 위험하거나 반복적인 작업을 수행합니다.</p>
+                        </div>
+                        <div class="flex gap-12 border-t border-white/10 pt-6 mt-6">
+                            <div>
+                                <div class="text-5xl font-black text-white">42%</div>
+                                <div class="text-sm font-medium text-gray-500 mt-2 uppercase tracking-wide">생산성 향상</div>
+                            </div>
+                            <div>
+                                <div class="text-5xl font-black text-white">0</div>
+                                <div class="text-sm font-medium text-gray-500 mt-2 uppercase tracking-wide">안전 사고 발생</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Item 2 -->
+                <div class="bento-item col-span-1 rounded-[2rem] bg-gray-900 border border-white/5 p-10 relative overflow-hidden group cursor-pointer">
+                    <div class="glow-effect absolute w-[400px] h-[400px] bg-green-500/20 rounded-full blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10 flex flex-col h-full justify-between">
+                        <div>
+                            <span class="px-4 py-1.5 bg-white/10 rounded-full text-xs font-bold tracking-wider uppercase text-green-300">물류</span>
+                            <h3 class="text-2xl font-bold mt-6">창고 주문 처리</h3>
+                            <p class="text-gray-400 mt-4 text-sm">동적인 환경에서의 완전한 자율 주행 및 물품 분류.</p>
+                        </div>
+                        <div class="mt-8 text-right">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center ml-auto group-hover:bg-white group-hover:text-black transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Item 3 -->
+                <div class="bento-item col-span-1 rounded-[2rem] bg-gray-900 border border-white/5 p-10 relative overflow-hidden group cursor-pointer">
+                     <div class="glow-effect absolute w-[400px] h-[400px] bg-purple-500/20 rounded-full blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10 flex flex-col h-full justify-between">
+                        <div>
+                            <span class="px-4 py-1.5 bg-white/10 rounded-full text-xs font-bold tracking-wider uppercase text-purple-300">의료 및 헬스케어</span>
+                            <h3 class="text-2xl font-bold mt-6">환자 간호 지원</h3>
+                            <p class="text-gray-400 mt-4 text-sm">의료진을 보조하여 무거운 짐을 옮기거나 의료 물품을 운송합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Bento Item 4 -->
+                <div class="bento-item col-span-1 md:col-span-2 rounded-[2rem] bg-gradient-to-br from-gray-900 to-gray-800 border border-white/5 p-10 relative overflow-hidden group cursor-pointer flex justify-center items-center text-center">
+                     <div class="glow-effect absolute w-[500px] h-[500px] bg-orange-500/20 rounded-full blur-[100px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-bold mb-6">혁신을 도입할 준비가 되셨나요?</h3>
+                        <button class="px-8 py-4 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.3)]">영업팀에 문의하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-[#020202] py-16 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-8">
+            <div class="text-2xl font-black text-white/50 tracking-tighter">HUMANICS</div>
+            <div>© 2026 HUMANICS Inc. 모든 권리 보유.</div>
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-white transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Logic -->
+    <script src="main.js"></script>
 </body>
 </html>

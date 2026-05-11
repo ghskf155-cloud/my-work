@@ -1,0 +1,72 @@
+/* Custom CSS for HUMANICS */
+
+/* Lenis Smooth Scrolling Required CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Data Stream Glitch / Fade Effect */
+.log-line {
+  animation: logFadeIn 0.3s ease-out forwards;
+  opacity: 0;
+  text-shadow: 0 0 5px rgba(74, 222, 128, 0.5); /* Glowing green text */
+}
+
+@keyframes logFadeIn {
+  from { 
+      opacity: 0; 
+      transform: translateY(10px); 
+  }
+  to { 
+      opacity: 1; 
+      transform: translateY(0); 
+  }
+}
+
+/* Syntax Highlighting Tweaks for Prism.js */
+pre[class*="language-"] {
+    background: transparent !important;
+    margin: 0 !important;
+    text-shadow: none !important;
+}
+code[class*="language-"] {
+    text-shadow: none !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+/* Hide canvas outline when clicked */
+canvas {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}

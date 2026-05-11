@@ -500,3 +500,90 @@ const initBentoGlow = () => {
 };
 
 initBentoGlow();
+
+// 7. Contact Modal Logic
+const initContactModal = () => {
+    const btnContact = document.getElementById('btn-contact-sales');
+    const modal = document.getElementById('contact-modal');
+    const overlay = document.getElementById('contact-modal-overlay');
+    const btnClose = document.getElementById('btn-close-modal');
+    const modalContent = document.getElementById('contact-modal-content');
+    const form = document.getElementById('contact-form');
+
+    if(!modal || !btnContact) return;
+
+    const openModal = () => {
+        modal.classList.remove('hidden');
+        // trigger reflow
+        void modal.offsetWidth;
+        modal.classList.remove('opacity-0');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+        // Stop Lenis scroll when modal is open
+        lenis.stop();
+    };
+
+    const closeModal = () => {
+        modal.classList.add('opacity-0');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            lenis.start();
+        }, 300);
+    };
+
+    btnContact.addEventListener('click', openModal);
+    overlay.addEventListener('click', closeModal);
+    btnClose.addEventListener('click', closeModal);
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('문의가 성공적으로 접수되었습니다. 담당 영업팀에서 기재해주신 이메일로 곧 연락드리겠습니다.');
+        form.reset();
+        closeModal();
+    });
+};
+
+initContactModal();
+
+// 8. Gallery Carousel Drag Logic
+const initGalleryDrag = () => {
+    const gallery = document.getElementById('gallery-carousel');
+    if(!gallery) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    gallery.addEventListener('mousedown', (e) => {
+        isDown = true;
+        gallery.style.cursor = 'grabbing';
+        startX = e.pageX - gallery.offsetLeft;
+        scrollLeft = gallery.scrollLeft;
+        // Temporarily disable snap during drag for smooth feeling
+        gallery.classList.remove('snap-x', 'snap-mandatory');
+    });
+
+    gallery.addEventListener('mouseleave', () => {
+        isDown = false;
+        gallery.style.cursor = 'grab';
+        gallery.classList.add('snap-x', 'snap-mandatory');
+    });
+
+    gallery.addEventListener('mouseup', () => {
+        isDown = false;
+        gallery.style.cursor = 'grab';
+        gallery.classList.add('snap-x', 'snap-mandatory');
+    });
+
+    gallery.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - gallery.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        gallery.scrollLeft = scrollLeft - walk;
+    });
+};
+
+initGalleryDrag();

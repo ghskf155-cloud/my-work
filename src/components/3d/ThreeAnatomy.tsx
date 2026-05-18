@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
 import * as THREE from "three";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -51,9 +51,11 @@ export default function ThreeAnatomy() {
           <Canvas camera={{ position: [0, 0, 40], fov: 45 }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
-            <PlaceholderMesh />
+            <Suspense fallback={null}>
+              <PlaceholderMesh />
+              <Environment preset="city" />
+            </Suspense>
             <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
-            <Environment preset="city" />
           </Canvas>
         </div>
       )}

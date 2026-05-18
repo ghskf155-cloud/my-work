@@ -3,7 +3,11 @@ import HeroScrolly from "@/components/sections/HeroScrolly";
 import Interactive from "@/components/sections/Interactive";
 import SpecsTab from "@/components/sections/SpecsTab";
 import FaqAccordion from "@/components/sections/FaqAccordion";
-import ThreeAnatomy from "@/components/3d/ThreeAnatomy";
+import dynamic from "next/dynamic";
+
+const ThreeAnatomy = dynamic(() => import("@/components/3d/ThreeAnatomy"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (

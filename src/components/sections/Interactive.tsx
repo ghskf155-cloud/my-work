@@ -1,6 +1,19 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const UTILITIES = [
+  { id: "human", label: "사람에게 다가가기", image: "/approaching_human.png" },
+  { id: "dishes", label: "설거지 정리하기", image: "/utility_dishes.png" },
+  { id: "bathroom", label: "욕실 청소하기", image: "/utility_bathroom.png" }
+];
+
 export default function Interactive() {
+  const [activeIndex, setActiveIndex] = useState(1); // '설거지 정리하기'를 기본값으로 설정
+
+  const activeUtil = UTILITIES[activeIndex] || UTILITIES[1];
+
   return (
     <div className="bg-stone-50 text-stone-900 font-sans w-full">
       {/* Utility Section (Split Layout) */}
@@ -11,15 +24,34 @@ export default function Interactive() {
             <p className="text-xl text-stone-500 mb-12 break-keep">
               집안일을 매끄럽게 자동화합니다.
             </p>
-            <div className="space-y-6 text-2xl md:text-4xl font-medium tracking-tight text-stone-400">
-              <p className="hover:text-stone-900 transition-colors cursor-pointer">사람에게 다가가기</p>
-              <p className="hover:text-stone-900 transition-colors cursor-pointer">설거지 정리하기</p>
-              <p className="hover:text-stone-900 transition-colors cursor-pointer">욕실 청소하기</p>
+            <div className="space-y-6 text-2xl md:text-4xl font-medium tracking-tight">
+              {UTILITIES.map((util, index) => (
+                <button
+                  key={util.id}
+                  onClick={() => setActiveIndex(index)}
+                  className={`block text-left transition-colors cursor-pointer focus:outline-none w-full font-medium ${
+                    activeIndex === index ? "text-stone-900" : "text-stone-300 hover:text-stone-500"
+                  }`}
+                >
+                  {util.label}
+                </button>
+              ))}
             </div>
           </div>
-          <div className="bg-white border border-stone-200 rounded-3xl p-8 h-[500px] flex items-center justify-center relative overflow-hidden group shadow-md">
-            <img src="/utility.png" alt="HUMANICS Utility" className="w-full h-full object-contain rounded-2xl opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="bg-white border border-stone-200 rounded-3xl p-8 h-[500px] flex items-center justify-center relative overflow-hidden shadow-md">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeUtil.id}
+                src={activeUtil.image}
+                alt={activeUtil.label}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="w-full h-full object-contain rounded-2xl"
+              />
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-tr from-stone-900/5 to-transparent pointer-events-none"></div>
           </div>
         </div>
       </section>

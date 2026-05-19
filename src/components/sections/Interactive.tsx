@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const UTILITIES = [
   { id: "human", label: "사람에게 다가가기", image: "/approaching_human.png" },
@@ -40,16 +41,22 @@ export default function Interactive() {
           </div>
           <div className="bg-white border border-stone-200 rounded-3xl p-8 h-[500px] flex items-center justify-center relative overflow-hidden shadow-md">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={activeUtil.id}
-                src={activeUtil.image}
-                alt={activeUtil.label}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="w-full h-full object-contain rounded-2xl"
-              />
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={activeUtil.image}
+                  alt={activeUtil.label}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain rounded-2xl"
+                />
+              </motion.div>
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-tr from-stone-900/5 to-transparent pointer-events-none"></div>
           </div>
@@ -64,7 +71,7 @@ export default function Interactive() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* 큰 이미지 (2x2) */}
             <div className="md:col-span-2 md:row-span-2 relative min-h-[400px] md:min-h-full rounded-3xl overflow-hidden group border border-stone-200 shadow-sm">
-               <img src="/design/gentle.png" alt="Gentle" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+               <Image src="/design/gentle.png" alt="Gentle" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">온화함</h3>
                  <p className="text-stone-200 md:text-lg max-w-sm">사람과 환경에 완벽하게 어우러지는 부드럽고 안전한 디자인입니다.</p>
@@ -73,28 +80,28 @@ export default function Interactive() {
             
             {/* 작은 이미지들 (1x1) */}
             <div className="relative h-[250px] rounded-3xl overflow-hidden group border border-stone-200 shadow-sm">
-               <img src="/design/knit_suit.png" alt="Knit Suit" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+               <Image src="/design/knit_suit.png" alt="Knit Suit" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-6">
                  <h3 className="text-xl font-bold text-white">니트 슈트</h3>
                </div>
             </div>
             
             <div className="relative h-[250px] rounded-3xl overflow-hidden group border border-stone-200 shadow-sm">
-               <img src="/design/tendon.png" alt="Tendon-Driven" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+               <Image src="/design/tendon.png" alt="Tendon-Driven" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-6">
                  <h3 className="text-xl font-bold text-white">텐던 구동</h3>
                </div>
             </div>
 
             <div className="relative h-[250px] rounded-3xl overflow-hidden group border border-stone-200 shadow-sm">
-               <img src="/design/soft_body.png" alt="Soft Body" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+               <Image src="/design/soft_body.png" alt="Soft Body" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-6">
                  <h3 className="text-xl font-bold text-white">부드러운 바디</h3>
                </div>
             </div>
 
             <div className="relative h-[250px] rounded-3xl overflow-hidden group border border-stone-200 shadow-sm">
-               <img src="/design/emotive.jpg" alt="Emotive Ear Ring" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+               <Image src="/design/emotive.jpg" alt="Emotive Ear Ring" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-6">
                  <h3 className="text-xl font-bold text-white">감정 표현 이어링</h3>
                </div>

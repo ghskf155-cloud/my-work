@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import Image from "next/image";
 
 export default function HeroScrolly() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,13 +33,10 @@ export default function HeroScrolly() {
     <section ref={containerRef} className="relative h-screen w-full bg-stone-50 flex flex-col items-center justify-center overflow-hidden" id="hero">
       {/* 이미지 배경 (패럴랙스) */}
       <div className="absolute inset-0 w-full h-[120%] -top-[10%]">
-        <Image
-          ref={imageRef as any}
+        <img
+          ref={imageRef}
           src="/hero_top.png"
           alt="HUMANICS Hero"
-          fill
-          priority
-          sizes="100vw"
           className="w-full h-full object-cover opacity-90"
         />
         {/* 상단 헤더 부분 가독성을 위한 그라데이션 */}

@@ -32,12 +32,16 @@ export default function FaqAccordion() {
   return (
     <section id="faq" className="bg-stone-50 text-stone-900 py-24 px-6 md:px-12 border-t border-stone-200">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-bold mb-16 tracking-tight">자주 묻는 질문</h2>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6 md:gap-0">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">자주 묻는 질문</h2>
+          <a href="/qna" className="inline-flex items-center justify-center px-8 py-3 bg-stone-900 text-stone-50 rounded-full hover:bg-stone-800 transition-colors font-medium whitespace-nowrap">
+            Q&A 게시판 가기
+          </a>
+        </div>
         <div className="space-y-4">
           {FAQ_DATA.map((item, index) => (
             <AccordionItem
               key={index}
-              index={index}
               question={item.question}
               answer={item.answer}
               isOpen={openIndex === index}
@@ -50,19 +54,7 @@ export default function FaqAccordion() {
   );
 }
 
-function AccordionItem({
-  index,
-  question,
-  answer,
-  isOpen,
-  onClick,
-}: {
-  index: number;
-  question: string;
-  answer: string;
-  isOpen: boolean;
-  onClick: () => void;
-}) {
+function AccordionItem({ question, answer, isOpen, onClick }: { question: string; answer: string; isOpen: boolean; onClick: () => void }) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -85,32 +77,22 @@ function AccordionItem({
     }
   }, [isOpen]);
 
-  const buttonId = `faq-btn-${index}`;
-  const panelId = `faq-panel-${index}`;
-
   return (
     <div className="border-b border-stone-200">
       <button
-        id={buttonId}
-        className="w-full py-6 flex justify-between items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2 group transition-all"
+        className="w-full py-6 flex justify-between items-center text-left focus:outline-none group"
         onClick={onClick}
-        aria-expanded={isOpen}
-        aria-controls={panelId}
       >
         <span className="text-xl md:text-2xl font-medium group-hover:text-stone-500 transition-colors">
           {question}
         </span>
-        <span className={`text-2xl transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`} aria-hidden="true">
+        <span className={`text-2xl transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
           +
         </span>
       </button>
       <div
-        id={panelId}
         ref={contentRef}
         className="overflow-hidden h-0 opacity-0"
-        role="region"
-        aria-labelledby={buttonId}
-        aria-hidden={!isOpen}
       >
         <p className="text-stone-600 text-lg pb-8 leading-relaxed">
           {answer}

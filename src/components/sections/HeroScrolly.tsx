@@ -35,12 +35,13 @@ export default function HeroScrolly() {
       {/* 이미지 배경 (패럴랙스) */}
       <div className="absolute inset-0 w-full h-[120%] -top-[10%]">
         <Image
-          ref={imageRef}
+          ref={imageRef as any}
           src="/hero_top.png"
           alt="HUMANICS Hero"
           fill
+          priority
           sizes="100vw"
-          className="object-cover opacity-90"
+          className="w-full h-full object-cover opacity-90"
         />
         {/* 상단 헤더 부분 가독성을 위한 그라데이션 */}
         <div className="absolute inset-0 bg-gradient-to-b from-stone-50/80 via-transparent to-transparent"></div>

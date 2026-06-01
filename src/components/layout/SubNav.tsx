@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { id: "companion", label: "동반자" },
   { id: "intelligence", label: "인공지능" },
   { id: "specs", label: "하드웨어 스펙" },
+  { id: "board", label: "예약 및 문의" },
   { id: "faq", label: "자주 묻는 질문" },
 ];
 
@@ -49,8 +50,9 @@ export default function SubNav() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({
-        top: element.offsetTop - 80, // SubNav 높이만큼 오프셋
+        top: offsetTop,
         behavior: "smooth",
       });
     }

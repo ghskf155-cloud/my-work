@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const NAV_ITEMS = [
   { id: "utility", label: "유틸리티" },
@@ -73,10 +74,14 @@ export default function SubNav() {
             </li>
           ))}
         </ul>
-        <button className="hidden md:block bg-stone-900 text-stone-50 px-4 py-2 rounded-full text-sm font-semibold hover:bg-stone-800 transition-colors">
+        <Link 
+          href="/qna"
+          className="hidden md:block bg-stone-900 text-stone-50 px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-stone-800 transition-all hover:scale-105 active:scale-95 shadow-sm"
+        >
           HUMANICS 예약하기
-        </button>
+        </Link>
       </div>
     </nav>
   );
 }
+

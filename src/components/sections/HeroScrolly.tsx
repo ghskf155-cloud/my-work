@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroScrolly() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,21 +35,24 @@ export default function HeroScrolly() {
     <section ref={containerRef} className="relative h-screen w-full bg-stone-50 flex flex-col items-center justify-center overflow-hidden" id="hero">
       {/* 이미지 배경 (패럴랙스) */}
       <div className="absolute inset-0 w-full h-[120%] -top-[10%]">
-        <img
-          ref={imageRef}
+        <Image
+          ref={imageRef as any}
           src="/hero_top.png"
           alt="HUMANICS Hero"
-          className="w-full h-full object-cover opacity-90"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-90"
         />
         {/* 상단 헤더 부분 가독성을 위한 그라데이션 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-50/80 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-50/80 via-transparent to-transparent z-10"></div>
       </div>
 
       {/* 하단 경계면 자연스럽게 페이드아웃 처리 */}
-      <div className="absolute bottom-0 left-0 w-full h-48 md:h-64 bg-gradient-to-t from-stone-50 via-stone-50/90 to-transparent z-0 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-48 md:h-64 bg-gradient-to-t from-stone-50 via-stone-50/90 to-transparent z-10 pointer-events-none"></div>
 
       {/* 오버레이 콘텐츠 */}
-      <div className="relative z-10 text-center px-6 mt-16">
+      <div className="relative z-20 text-center px-6 mt-16">
         <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-stone-900 mb-6 drop-shadow-md">
           HUMANICS 가정용 로봇
         </h1>
@@ -57,14 +62,17 @@ export default function HeroScrolly() {
           </p>
         </div>
         <div>
-          <button className="bg-stone-900 text-stone-50 px-8 py-4 rounded-full text-lg font-bold hover:bg-stone-800 transition-transform transform hover:scale-105 shadow-xl">
+          <Link 
+            href="/qna"
+            className="inline-block bg-stone-900 text-stone-50 px-8 py-4 rounded-full text-lg font-bold hover:bg-stone-800 transition-transform transform hover:scale-105 active:scale-95 shadow-xl"
+          >
             예치금 20만원 결제하기
-          </button>
+          </Link>
         </div>
       </div>
 
       {/* 3열 기능 그리드 (하단 배치) */}
-      <div className="absolute bottom-10 left-0 w-full px-6 md:px-12 z-10">
+      <div className="absolute bottom-10 left-0 w-full px-6 md:px-12 z-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {["도움의 손길", "시간의 확보", "유용한 인공지능"].map((item, idx) => (
             <div key={idx} className="bg-white/80 backdrop-blur-md border border-stone-200 p-6 rounded-2xl flex items-center space-x-4 shadow-lg">

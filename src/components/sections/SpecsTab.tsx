@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 // 탭 카테고리 정의
 const TABS = ["유틸리티", "자율성", "음성", "이동성", "디자인", "AI", "하드웨어"] as const;
@@ -96,10 +97,12 @@ export default function SpecsTab() {
                     </p>
                   </div>
                   <div className="border border-stone-200 rounded-3xl overflow-hidden shadow-sm h-[300px] md:h-auto min-h-[300px] relative bg-white flex items-center justify-center p-6 hover:border-stone-400 transition-colors duration-300">
-                    <img
+                    <Image
                       src="/robot_hand.png"
                       alt="HUMANICS 22 DoF Hand"
-                      className="w-full h-full object-contain rounded-2xl"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-contain rounded-2xl p-6"
                     />
                   </div>
                 </>
@@ -117,10 +120,12 @@ export default function SpecsTab() {
                     </p>
                   </div>
                   <div className="border border-stone-200 rounded-3xl overflow-hidden shadow-sm h-[300px] md:h-auto min-h-[300px] relative bg-white flex items-center justify-center p-6 hover:border-stone-400 transition-colors duration-300">
-                    <img
+                    <Image
                       src="/robot_ear.png"
                       alt="HUMANICS Acoustic Module"
-                      className="w-full h-full object-contain rounded-2xl"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-contain rounded-2xl p-6"
                     />
                   </div>
                 </>
@@ -138,10 +143,12 @@ export default function SpecsTab() {
                     </p>
                   </div>
                   <div className="border border-stone-200 rounded-3xl overflow-hidden shadow-sm h-[300px] md:h-auto min-h-[300px] relative bg-white flex items-center justify-center p-6 hover:border-stone-400 transition-colors duration-300">
-                    <img
+                    <Image
                       src="/robot_walk.png"
                       alt="HUMANICS Bipedal Walking"
-                      className="w-full h-full object-contain rounded-2xl"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-contain rounded-2xl p-6"
                     />
                   </div>
                 </>
@@ -161,10 +168,12 @@ export default function SpecsTab() {
                       </p>
                     </div>
                     <div className="border border-stone-100 rounded-2xl overflow-hidden shadow-sm h-[180px] relative bg-stone-50 flex items-center justify-center mt-4">
-                      <img
+                      <Image
                         src="/design_knitsuit.png"
                         alt="Knit Suit Closeup"
-                        className="w-full h-full object-cover rounded-2xl"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                        className="object-cover rounded-2xl"
                       />
                     </div>
                   </div>
@@ -183,10 +192,12 @@ export default function SpecsTab() {
                       </p>
                     </div>
                     <div className="border border-stone-100 rounded-2xl overflow-hidden shadow-sm h-[180px] relative bg-stone-50 flex items-center justify-center mt-4">
-                      <img
+                      <Image
                         src="/design_softbody.png"
                         alt="Soft Body Closeup"
-                        className="w-full h-full object-cover rounded-2xl"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                        className="object-cover rounded-2xl"
                       />
                     </div>
                   </div>
@@ -205,10 +216,12 @@ export default function SpecsTab() {
                       </p>
                     </div>
                     <div className="border border-stone-100 rounded-2xl overflow-hidden shadow-sm h-[180px] relative bg-stone-50 flex items-center justify-center mt-4">
-                      <img
+                      <Image
                         src="/design_tendon.png"
                         alt="Tendon Driven closeup"
-                        className="w-full h-full object-cover rounded-2xl"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                        className="object-cover rounded-2xl"
                       />
                     </div>
                   </div>
@@ -239,10 +252,12 @@ export default function SpecsTab() {
                     </p>
                   </div>
                   <div className="border border-stone-200 rounded-3xl overflow-hidden shadow-sm h-[300px] md:h-auto min-h-[300px] relative bg-white flex items-center justify-center p-6 hover:border-stone-400 transition-colors duration-300">
-                    <img
+                    <Image
                       src="/robot_cortex.png"
                       alt="HUMANICS Cortex Board"
-                      className="w-full h-full object-contain rounded-2xl"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-contain rounded-2xl p-6"
                     />
                   </div>
                 </>
@@ -260,17 +275,21 @@ export default function SpecsTab() {
                     </p>
                   </div>
                   <div className="border border-stone-200 rounded-3xl overflow-hidden shadow-sm h-[300px] md:h-auto min-h-[300px] relative bg-white flex items-center justify-center p-6 hover:border-stone-400 transition-colors duration-300">
-                    <img
+                    <Image
                       src="/spatial_pointcloud.png"
                       alt="Spatial Mapping Point Cloud"
-                      className="w-full h-full object-contain rounded-2xl"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-contain rounded-2xl p-6"
                     />
                   </div>
                   <div className="border border-stone-200 rounded-3xl overflow-hidden shadow-sm h-[300px] md:h-auto min-h-[300px] relative bg-white flex items-center justify-center p-6 hover:border-stone-400 transition-colors duration-300">
-                    <img
+                    <Image
                       src="/spatial_real.png"
                       alt="Robot Navigating Home"
-                      className="w-full h-full object-contain rounded-2xl"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-contain rounded-2xl p-6"
                     />
                   </div>
                 </>

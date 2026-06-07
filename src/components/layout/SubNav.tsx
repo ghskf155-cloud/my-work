@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import ReservationModal from "../sections/ReservationModal";
 
 const NAV_ITEMS = [
   { id: "utility", label: "유틸리티" },
@@ -9,13 +9,27 @@ const NAV_ITEMS = [
   { id: "companion", label: "동반자" },
   { id: "intelligence", label: "인공지능" },
   { id: "specs", label: "하드웨어 스펙" },
+  { id: "feedback-board", label: "실시간 문의" },
   { id: "faq", label: "자주 묻는 질문" },
 ];
 
 export default function SubNav() {
   const [activeSection, setActiveSection] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
 
   useEffect(() => {
+    const handleOpenModal = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail?.rect) {
+        setTriggerRect(customEvent.detail.rect);
+      } else {
+        setTriggerRect(null);
+      }
+      setIsModalOpen(true);
+    };
+    window.addEventListener("open-reservation-modal", handleOpenModal);
+
     const observers = new Map();
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -43,6 +57,7 @@ export default function SubNav() {
     });
 
     return () => {
+      window.removeEventListener("open-reservation-modal", handleOpenModal);
       observers.forEach((element) => observer.unobserve(element));
     };
   }, []);
@@ -74,14 +89,18 @@ export default function SubNav() {
             </li>
           ))}
         </ul>
-        <Link 
-          href="/qna"
-          className="hidden md:block bg-stone-900 text-stone-50 px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-stone-800 transition-all hover:scale-105 active:scale-95 shadow-sm"
+        <button 
+          onClick={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            setTriggerRect(rect);
+            setIsModalOpen(true);
+          }}
+          className="hidden md:block bg-stone-900 text-stone-50 px-4 py-2 rounded-full text-sm font-semibold hover:bg-stone-800 transition-colors"
         >
           HUMANICS 예약하기
-        </Link>
+        </button>
       </div>
+      <ReservationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} triggerRect={triggerRect} />
     </nav>
   );
 }
-

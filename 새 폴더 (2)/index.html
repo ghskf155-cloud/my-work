@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHYSICAL AI // SHOWCASE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { bBlack: '#050505', bYellow: '#FFDC00', bWhite: '#F4F4F4', bGray: '#222222', bLightGray: '#888888' }, fontFamily: { display: ['Oswald', 'sans-serif'], mono: ['Space Mono', 'monospace'], sans: ['Inter', 'sans-serif'] }, boxShadow: { 'brutal': '8px 8px 0px 0px rgba(255, 220, 0, 1)', 'brutal-white': '8px 8px 0px 0px rgba(244, 244, 244, 1)', 'brutal-gray': '8px 8px 0px 0px rgba(34, 34, 34, 1)' } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #F4F4F4; }
+        .blueprint-grid { background-image: linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px); background-size: 50px 50px; }
+        .caution-stripes { background: repeating-linear-gradient(-45deg, #FFDC00, #FFDC00 15px, #050505 15px, #050505 30px); }
+        .brutal-card { border: 4px solid #222; background-color: #050505; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+        .brutal-card:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px 0px #FFDC00; border-color: #FFDC00; }
+        *:focus-visible { outline: 4px solid #FFDC00 !important; outline-offset: 2px !important; }
+        .mark-yellow { background-color: #FFDC00; color: #050505; padding: 0 8px; display: inline-block; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-bYellow selection:text-bBlack">
+<div class="h-2 caution-stripes w-full fixed top-0 z-[60]"></div>
+<nav class="fixed w-full z-50 border-b-4 border-bGray bg-bBlack/95 backdrop-blur-sm top-2" role="navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <a href="index.html" class="font-display font-bold text-2xl tracking-widest text-bWhite uppercase flex items-center gap-3">
+            <div class="w-4 h-4 bg-bYellow animate-pulse"></div>PHYSICAL // AI
+        </a>
+        <div class="flex overflow-x-auto w-full md:w-auto space-x-6 text-sm font-mono font-bold text-bLightGray uppercase pb-2 md:pb-0 scrollbar-hide">
+            <a href="index.html" class="whitespace-nowrap text-bWhite border-b-2 border-bYellow">01.Vision</a>
+            <a href="core.html" class="hover:text-bYellow transition-colors whitespace-nowrap">02.Core</a>
+            <a href="data.html" class="hover:text-bYellow transition-colors whitespace-nowrap">03.Data</a>
+            <a href="hardware.html" class="hover:text-bYellow transition-colors whitespace-nowrap">04.Hardware</a>
+            <a href="board.html" class="hover:text-bYellow transition-colors whitespace-nowrap">05.Board</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 blueprint-grid border-b-8 border-bGray">
+        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col justify-center">
+            <div class="border-4 border-bYellow inline-block px-4 py-2 font-mono text-bYellow font-bold uppercase tracking-widest mb-8 self-start bg-bBlack shadow-[4px_4px_0px_0px_#FFDC00]">
+                System Initialized _ V.1.0.0
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-4 leading-[1.1] text-bWhite uppercase">
+                <span class="block">피지컬 AI의 시대가</span>
+                <span class="mark-yellow mt-2">도래했다.</span>
+            </h1>
+            <h2 class="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-bLightGray uppercase mb-16 max-w-4xl">
+                이제 모든 산업 기업은 로봇 기업이 될 것이다.
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8 w-full border-t-4 border-bGray pt-12">
+                <article class="brutal-card p-8 group relative" tabindex="0">
+                    <div class="absolute -top-5 left-6 bg-bBlack px-2 text-bWhite font-display text-2xl font-bold uppercase tracking-wide border-2 border-[#222] group-hover:border-bYellow transition-colors">[ 역설의 한계 ]</div>
+                    <div class="font-mono text-bYellow text-sm mb-4">ERROR: MORAVEC_PARADOX</div>
+                    <p class="text-bWhite text-base md:text-lg font-sans leading-relaxed">
+                        기존 산업용 자동화 기계는 정해진 경로만 반복하여 자율 대응에 한계가 있다. 현재 생성형 AI는 언어와 시각 생성엔 능하지만, <strong class="text-bYellow underline decoration-4 underline-offset-4">실제 3D 세계의 물리적 규칙과 공간적 관계 이해</strong>는 제한적이라는 명백한 오류를 지닌다.
+                    </p>
+                </article>
+                <article class="brutal-card p-8 group relative border-bYellow shadow-brutal" tabindex="0">
+                    <div class="absolute -top-5 left-6 bg-bBlack px-2 text-bYellow font-display text-2xl font-bold uppercase tracking-wide border-2 border-bYellow">[ 궁극적 진화 ]</div>
+                    <div class="font-mono text-bWhite text-sm mb-4">TARGET: GENERALIST_AGENT</div>
+                    <p class="text-bWhite text-base md:text-lg font-sans leading-relaxed">
+                        가상 세계의 디지털 정보 생성을 넘어, 로봇·자율주행차·산업장비와 결합한다. 실제 물리적 환경에서 스스로 <strong class="mark-yellow">인지, 추론, 직접 행동</strong>하는 단계로의 폭발적 진화. 이것이 우리의 목표다.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-bBlack py-12 border-t-8 border-bYellow text-center font-display uppercase">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-4xl font-bold text-bWhite mb-4">PHYSICAL AI SHOWCASE</div>
+        <p class="text-bYellow font-bold text-xl mb-4 tracking-widest">INDUSTRIAL ENGINEERING BRUTALISM</p>
+    </div>
+</footer>
+</body></html>

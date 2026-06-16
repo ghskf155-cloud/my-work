@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHYSICAL AI // BOARD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { bBlack: '#050505', bYellow: '#FFDC00', bWhite: '#F4F4F4', bGray: '#222222', bLightGray: '#888888' }, fontFamily: { display: ['Oswald', 'sans-serif'], mono: ['Space Mono', 'monospace'], sans: ['Inter', 'sans-serif'] }, boxShadow: { 'brutal-white': '8px 8px 0px 0px rgba(244, 244, 244, 1)' } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <style>
+        body { background-color: #050505; color: #F4F4F4; }
+        .caution-stripes { background: repeating-linear-gradient(-45deg, #FFDC00, #FFDC00 15px, #050505 15px, #050505 30px); }
+        *:focus-visible { outline: 4px solid #FFDC00 !important; outline-offset: 2px !important; }
+        .board-scroll::-webkit-scrollbar { width: 8px; }
+        .board-scroll::-webkit-scrollbar-track { background: #050505; border-left: 2px solid #222; }
+        .board-scroll::-webkit-scrollbar-thumb { background: #FFDC00; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-bYellow selection:text-bBlack">
+<div class="h-2 caution-stripes w-full fixed top-0 z-[60]"></div>
+<nav class="fixed w-full z-50 border-b-4 border-bGray bg-bBlack/95 backdrop-blur-sm top-2" role="navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <a href="index.html" class="font-display font-bold text-2xl tracking-widest text-bWhite uppercase flex items-center gap-3">
+            <div class="w-4 h-4 bg-bYellow animate-pulse"></div>PHYSICAL // AI
+        </a>
+        <div class="flex overflow-x-auto w-full md:w-auto space-x-6 text-sm font-mono font-bold text-bLightGray uppercase pb-2 md:pb-0 scrollbar-hide">
+            <a href="index.html" class="hover:text-bYellow transition-colors whitespace-nowrap">01.Vision</a>
+            <a href="core.html" class="hover:text-bYellow transition-colors whitespace-nowrap">02.Core</a>
+            <a href="data.html" class="hover:text-bYellow transition-colors whitespace-nowrap">03.Data</a>
+            <a href="hardware.html" class="hover:text-bYellow transition-colors whitespace-nowrap">04.Hardware</a>
+            <a href="board.html" class="whitespace-nowrap text-bWhite border-b-2 border-bYellow">05.Board</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section id="board" class="py-32 min-h-screen relative bg-[#0a0a0a] border-b-8 border-bGray">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                <div>
+                    <div class="font-mono text-bYellow text-lg font-bold mb-2">PHASE // 05</div>
+                    <h2 class="text-5xl md:text-6xl font-display font-bold uppercase text-bWhite">INDUSTRIAL LOG CENTER</h2>
+                    <p class="text-bLightGray font-sans font-semibold mt-4">안전한 데이터 송수신을 위한 실시간 관제 로깅 센터</p>
+                </div>
+                <a href="index.html" class="inline-flex items-center gap-3 border-4 border-bGray bg-bBlack text-bWhite hover:border-bYellow hover:text-bYellow transition-colors px-8 py-4 font-display font-bold text-2xl uppercase shadow-[6px_6px_0px_0px_#FFDC00] focus-visible:ring-4 focus-visible:ring-bWhite focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    RETURN TO HOME
+                </a>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="border-4 border-bWhite bg-bBlack p-8 shadow-[8px_8px_0px_0px_rgba(244,244,244,1)]">
+                    <h3 class="font-display text-3xl font-bold uppercase text-bWhite mb-6 border-b-4 border-bGray pb-2">INPUT STREAM</h3>
+                    <form id="fb-form" class="space-y-6">
+                        <div>
+                            <label for="fb-name" class="block font-mono font-bold text-bYellow text-sm mb-2 uppercase">OPERATOR ID</label>
+                            <input type="text" id="fb-name" required class="w-full bg-[#111] border-4 border-[#333] text-bWhite p-4 font-mono focus-visible:ring-4 focus-visible:ring-bYellow focus:outline-none transition-colors hover:border-bGray" placeholder="식별자를 입력하세요">
+                        </div>
+                        <div>
+                            <label for="fb-msg" class="block font-mono font-bold text-bYellow text-sm mb-2 uppercase">DATA PAYLOAD</label>
+                            <textarea id="fb-msg" required rows="4" class="w-full bg-[#111] border-4 border-[#333] text-bWhite p-4 font-sans focus-visible:ring-4 focus-visible:ring-bYellow focus:outline-none transition-colors hover:border-bGray resize-none" placeholder="로깅할 데이터를 입력하세요"></textarea>
+                        </div>
+                        <button type="submit" class="w-full border-4 border-bYellow bg-bYellow text-bBlack font-display font-bold text-2xl uppercase py-4 hover:bg-bBlack hover:text-bYellow transition-colors focus-visible:ring-4 focus-visible:ring-bWhite focus:outline-none shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
+                            TRANSMIT LOG
+                        </button>
+                    </form>
+                </div>
+
+                <div class="border-4 border-bGray bg-[#111] p-8 flex flex-col h-[500px]">
+                    <div class="flex justify-between items-center mb-6 border-b-4 border-[#333] pb-2">
+                        <h3 class="font-display text-3xl font-bold uppercase text-bWhite">SYSTEM LOGS</h3>
+                        <span id="db-status" class="font-mono text-xs bg-bYellow text-bBlack px-2 py-1 font-bold">MOCK DB SECURE</span>
+                    </div>
+                    <div id="board-list" class="flex-grow overflow-y-auto board-scroll space-y-4 pr-4" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-bBlack py-12 border-t-8 border-bYellow text-center font-display uppercase">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-4xl font-bold text-bWhite mb-4">PHYSICAL AI SHOWCASE</div>
+        <p class="text-bYellow font-bold text-xl mb-4 tracking-widest">INDUSTRIAL ENGINEERING BRUTALISM</p>
+    </div>
+</footer>
+
+<script>
+    const firebaseConfig = { apiKey: "YOUR_API_KEY", authDomain: "YOUR_PROJECT_ID.firebaseapp.com", databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com", projectId: "YOUR_PROJECT_ID", };
+    const useFirebase = firebaseConfig.apiKey !== "YOUR_API_KEY";
+    const boardList = document.getElementById('board-list');
+    const statusBadge = document.getElementById('db-status');
+    const LOCAL_KEY = 'physical_ai_board';
+
+    // XSS 방어: innerHTML 대신 textContent를 사용하여 안전하게 DOM 생성
+    const renderMessage = (name, msg, date) => {
+        const d = new Date(date);
+        const dateStr = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        
+        const card = document.createElement('div');
+        card.className = "border-2 border-[#333] bg-bBlack p-4 hover:border-bYellow transition-colors focus-within:ring-2 focus-within:ring-bWhite";
+        card.setAttribute('tabindex', '0');
+        
+        const header = document.createElement('div');
+        header.className = "flex justify-between items-center mb-2 border-b-2 border-[#222] pb-2";
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.className = "font-display font-bold text-bYellow text-xl uppercase";
+        nameSpan.textContent = name; // 안전한 텍스트 주입
+        
+        const dateSpan = document.createElement('span');
+        dateSpan.className = "font-mono text-[#666] text-xs";
+        dateSpan.textContent = dateStr;
+        
+        header.appendChild(nameSpan);
+        header.appendChild(dateSpan);
+        
+        const msgP = document.createElement('p');
+        msgP.className = "text-bWhite font-sans text-sm break-words whitespace-pre-wrap";
+        msgP.textContent = msg; // 안전한 텍스트 주입
+        
+        card.appendChild(header);
+        card.appendChild(msgP);
+        
+        boardList.prepend(card);
+    };
+
+    if (useFirebase) {
+        statusBadge.innerText = "Firebase Secure";
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const logsRef = db.ref('logs');
+        logsRef.on('child_added', (snapshot) => { const data = snapshot.val(); renderMessage(data.name, data.message, data.date); });
+        document.getElementById('fb-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            logsRef.push({ name: document.getElementById('fb-name').value, message: document.getElementById('fb-msg').value, date: new Date().toISOString() });
+            document.getElementById('fb-form').reset();
+        });
+    } else {
+        const loadMockData = () => {
+            boardList.innerHTML = '';
+            const data = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+            [...data].reverse().forEach(item => renderMessage(item.name, item.message, item.date));
+            if(data.length === 0) renderMessage("SYSTEM", "환영합니다. 안전한 로컬 스토리지 모드로 작동 중입니다.", new Date().toISOString());
+        };
+        loadMockData();
+        document.getElementById('fb-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('fb-name').value;
+            const msg = document.getElementById('fb-msg').value;
+            const date = new Date().toISOString();
+            const data = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+            data.unshift({ name, message: msg, date });
+            localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
+            renderMessage(name, msg, date);
+            document.getElementById('fb-form').reset();
+        });
+    }
+</script>
+</body></html>

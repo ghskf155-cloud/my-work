@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHYSICAL AI // DATA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { bBlack: '#050505', bYellow: '#FFDC00', bWhite: '#F4F4F4', bGray: '#222222', bLightGray: '#888888' }, fontFamily: { display: ['Oswald', 'sans-serif'], mono: ['Space Mono', 'monospace'], sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #F4F4F4; }
+        .caution-stripes { background: repeating-linear-gradient(-45deg, #FFDC00, #FFDC00 15px, #050505 15px, #050505 30px); }
+        *:focus-visible { outline: 4px solid #FFDC00 !important; outline-offset: 2px !important; }
+        .brutal-shadow-w { box-shadow: 12px 12px 0px 0px #F4F4F4; }
+        .brutal-shadow-y { box-shadow: 12px 12px 0px 0px #222222; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-bYellow selection:text-bBlack">
+<div class="h-2 caution-stripes w-full fixed top-0 z-[60]"></div>
+<nav class="fixed w-full z-50 border-b-4 border-bGray bg-bBlack/95 backdrop-blur-sm top-2" role="navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <a href="index.html" class="font-display font-bold text-2xl tracking-widest text-bWhite uppercase flex items-center gap-3">
+            <div class="w-4 h-4 bg-bYellow animate-pulse"></div>PHYSICAL // AI
+        </a>
+        <div class="flex overflow-x-auto w-full md:w-auto space-x-6 text-sm font-mono font-bold text-bLightGray uppercase pb-2 md:pb-0 scrollbar-hide">
+            <a href="index.html" class="hover:text-bYellow transition-colors whitespace-nowrap">01.Vision</a>
+            <a href="core.html" class="hover:text-bYellow transition-colors whitespace-nowrap">02.Core</a>
+            <a href="data.html" class="whitespace-nowrap text-bWhite border-b-2 border-bYellow">03.Data</a>
+            <a href="hardware.html" class="hover:text-bYellow transition-colors whitespace-nowrap">04.Hardware</a>
+            <a href="board.html" class="hover:text-bYellow transition-colors whitespace-nowrap">05.Board</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section id="capability" class="py-32 min-h-screen relative border-b-8 border-bGray bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-bYellow text-bBlack font-display font-bold text-2xl px-6 py-2 uppercase transform -skew-x-12 mb-6 shadow-[4px_4px_0px_0px_#222]">
+                    <span class="transform skew-x-12 block">Proven Data</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-display font-bold uppercase text-bWhite">CAPABILITY CHANGELOG</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12 mb-16">
+                <article class="border-8 border-bWhite bg-bBlack p-6 flex flex-col relative brutal-shadow-w" tabindex="0">
+                    <div class="border-b-4 border-bGray pb-4 mb-6">
+                        <h4 class="font-display text-3xl font-bold uppercase text-bWhite">LG 스마트파크</h4>
+                    </div>
+                    <div class="space-y-6 flex-grow">
+                        <div>
+                            <div class="font-mono text-bLightGray font-bold uppercase text-sm mb-1">AI VISION DEFECT RATE</div>
+                            <div class="font-display font-bold text-6xl text-bYellow"><span class="counter" data-target="90">0</span>%+</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="font-mono text-bLightGray font-bold uppercase text-xs mb-1">PRODUCTIVITY</div>
+                                <div class="font-display font-bold text-4xl text-bWhite"><span class="counter" data-target="17">0</span>%</div>
+                            </div>
+                            <div>
+                                <div class="font-mono text-bLightGray font-bold uppercase text-xs mb-1">ENERGY EFF.</div>
+                                <div class="font-display font-bold text-4xl text-bWhite"><span class="counter" data-target="30">0</span>%</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="border-8 border-bYellow bg-bYellow p-6 flex flex-col relative brutal-shadow-y text-bBlack transform md:-translate-y-4" tabindex="0">
+                    <div class="border-b-4 border-bBlack pb-4 mb-6">
+                        <h4 class="font-display text-3xl font-bold uppercase text-bBlack">LG CNS '피지컬웍스'</h4>
+                        <div class="font-mono text-[#555] font-bold text-sm bg-bBlack text-bYellow px-2 inline-block mt-2">100 ROBOTS FLEET</div>
+                    </div>
+                    <div class="space-y-6 flex-grow">
+                        <div>
+                            <div class="font-mono text-bBlack font-bold uppercase text-sm mb-1">OPEX REDUCTION</div>
+                            <div class="font-display font-bold text-7xl text-bBlack"><span class="counter" data-target="18">0</span>%</div>
+                        </div>
+                        <div class="pt-4 border-t-4 border-bBlack flex items-end justify-between">
+                            <div class="font-mono text-bBlack font-bold uppercase text-sm mb-1">DEPLOYMENT</div>
+                            <div class="text-right">
+                                <span class="font-display font-bold text-2xl text-[#555] line-through mr-2">수개월</span>
+                                <span class="font-display font-bold text-5xl text-bBlack">1~2M</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="border-8 border-bWhite bg-bBlack p-6 flex flex-col relative brutal-shadow-w" tabindex="0">
+                    <div class="border-b-4 border-bGray pb-4 mb-6">
+                        <h4 class="font-display text-3xl font-bold uppercase text-bWhite">Amazon 물류 시스템</h4>
+                    </div>
+                    <div class="space-y-6 flex-grow">
+                        <div>
+                            <div class="font-mono text-bLightGray font-bold uppercase text-sm mb-1">THROUGHPUT BOOST</div>
+                            <div class="font-display font-bold text-6xl text-bYellow"><span class="counter" data-target="25">0</span>%+</div>
+                        </div>
+                        <p class="text-bWhite font-sans font-semibold text-sm leading-relaxed mt-4 bg-[#1a1a1a] p-4 border-l-4 border-bYellow">
+                            동적 환경에서의 효율적인 상품 처리 및 분류 작업을 통해 전체적인 물류 스루풋 극대화 달성.
+                        </p>
+                    </div>
+                </article>
+            </div>
+            
+        </div>
+    </section>
+</main>
+
+<footer class="bg-bBlack py-12 border-t-8 border-bYellow text-center font-display uppercase">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-4xl font-bold text-bWhite mb-4">PHYSICAL AI SHOWCASE</div>
+        <p class="text-bYellow font-bold text-xl mb-4 tracking-widest">INDUSTRIAL ENGINEERING BRUTALISM</p>
+    </div>
+</footer>
+
+<script>
+    // IntersectionObserver API for optimized counter animation
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const updateCount = () => {
+                    const inc = target / 30; // Fast count up
+                    if (count < target) {
+                        count += inc;
+                        counter.innerText = Math.ceil(count);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+                obs.unobserve(counter); // Run only once
+            }
+        });
+    }, { threshold: 0.1 });
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+</script>
+</body></html>

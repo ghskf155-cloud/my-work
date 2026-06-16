@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHYSICAL AI // CORE TECH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { bBlack: '#050505', bYellow: '#FFDC00', bWhite: '#F4F4F4', bGray: '#222222', bLightGray: '#888888' }, fontFamily: { display: ['Oswald', 'sans-serif'], mono: ['Space Mono', 'monospace'], sans: ['Inter', 'sans-serif'] }, boxShadow: { 'brutal': '8px 8px 0px 0px rgba(255, 220, 0, 1)' } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #F4F4F4; }
+        .caution-stripes { background: repeating-linear-gradient(-45deg, #FFDC00, #FFDC00 15px, #050505 15px, #050505 30px); }
+        .brutal-card { border: 4px solid #222; background-color: #050505; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+        .brutal-card:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px 0px #FFDC00; border-color: #FFDC00; }
+        *:focus-visible { outline: 4px solid #FFDC00 !important; outline-offset: 2px !important; }
+        
+        /* Industrial Flow Animation */
+        .industrial-path { fill: none; stroke: #FFDC00; stroke-width: 4; stroke-dasharray: 12, 12; animation: flowAnim 1s linear infinite; }
+        @keyframes flowAnim { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-bYellow selection:text-bBlack">
+<div class="h-2 caution-stripes w-full fixed top-0 z-[60]"></div>
+<nav class="fixed w-full z-50 border-b-4 border-bGray bg-bBlack/95 backdrop-blur-sm top-2" role="navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <a href="index.html" class="font-display font-bold text-2xl tracking-widest text-bWhite uppercase flex items-center gap-3">
+            <div class="w-4 h-4 bg-bYellow animate-pulse"></div>PHYSICAL // AI
+        </a>
+        <div class="flex overflow-x-auto w-full md:w-auto space-x-6 text-sm font-mono font-bold text-bLightGray uppercase pb-2 md:pb-0 scrollbar-hide">
+            <a href="index.html" class="hover:text-bYellow transition-colors whitespace-nowrap">01.Vision</a>
+            <a href="core.html" class="whitespace-nowrap text-bWhite border-b-2 border-bYellow">02.Core</a>
+            <a href="data.html" class="hover:text-bYellow transition-colors whitespace-nowrap">03.Data</a>
+            <a href="hardware.html" class="hover:text-bYellow transition-colors whitespace-nowrap">04.Hardware</a>
+            <a href="board.html" class="hover:text-bYellow transition-colors whitespace-nowrap">05.Board</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section id="core-tech" class="py-32 min-h-screen relative border-b-8 border-bGray bg-bBlack flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <div class="flex flex-col md:flex-row justify-between items-end border-b-4 border-bWhite pb-6 mb-16 gap-4">
+                <div>
+                    <div class="font-mono text-bYellow text-lg font-bold mb-2">PHASE // 02</div>
+                    <h2 class="text-5xl md:text-6xl font-display font-bold uppercase text-bWhite">CORE TECHNOLOGY</h2>
+                </div>
+                <div class="text-bLightGray font-mono font-bold max-w-sm md:text-right">
+                    VLA 모델과 월드 모델 메커니즘을 통한 자율 지능 파이프라인.
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8">
+                <!-- Text Cards -->
+                <div class="lg:col-span-5 flex flex-col gap-8 z-10">
+                    <article class="brutal-card p-8 border-bWhite shadow-[8px_8px_0px_0px_rgba(244,244,244,1)]">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-3xl font-display font-bold text-bWhite uppercase">VLA Brain</h3>
+                            <div class="w-12 h-12 bg-bWhite text-bBlack flex items-center justify-center font-display font-bold text-xl">VLA</div>
+                        </div>
+                        <p class="text-bLightGray font-sans font-semibold">
+                            환경 인식(시각), 지시 이해(언어), 행동 생성(동작)을 <span class="text-bWhite bg-[#222] px-1">하나의 통합 구조</span>로 연결.
+                        </p>
+                    </article>
+                    <article class="brutal-card p-8 border-bYellow shadow-[8px_8px_0px_0px_rgba(255,220,0,1)]">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-3xl font-display font-bold text-bYellow uppercase">World Model</h3>
+                            <div class="w-12 h-12 bg-bYellow text-bBlack flex items-center justify-center font-display font-bold text-xl">WM</div>
+                        </div>
+                        <p class="text-bWhite font-sans font-semibold">
+                            행동 전 가상 공간에서 결과를 상상하고 계획하는 <span class="bg-bYellow text-bBlack px-1 font-bold">내재적 시뮬레이터</span>.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Interactive Pipeline Diagram -->
+                <div class="lg:col-span-7 brutal-card p-8 bg-[#111] relative overflow-hidden flex flex-col justify-center min-h-[400px]">
+                    <div class="absolute top-4 right-4 font-mono text-bGray font-bold text-2xl uppercase">DATA_PIPELINE</div>
+                    
+                    <div class="relative w-full max-w-lg mx-auto h-[300px] flex items-center justify-center">
+                        <!-- Connecting SVG Animation -->
+                        <svg class="absolute inset-0 w-full h-full" style="z-index: 1;">
+                            <path d="M 50 150 L 250 150 L 450 150" class="industrial-path" />
+                        </svg>
+
+                        <!-- Nodes -->
+                        <div class="absolute left-0 flex flex-col items-center z-10 w-24">
+                            <div class="w-16 h-16 border-4 border-bWhite bg-bBlack text-bWhite flex items-center justify-center font-mono font-bold text-xl mb-2">IN</div>
+                            <div class="font-display text-bWhite text-center text-sm uppercase">Vision/3D</div>
+                        </div>
+
+                        <div class="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10 w-40">
+                            <div class="border-4 border-bYellow bg-bBlack p-4 shadow-[4px_4px_0px_0px_rgba(255,220,0,1)] text-center w-full">
+                                <div class="font-display font-bold text-bYellow text-2xl">WM & VLA</div>
+                                <div class="font-mono text-xs text-bLightGray mt-1">Processing...</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute right-0 flex flex-col items-center z-10 w-24">
+                            <div class="w-16 h-16 border-4 border-[#F4F4F4] bg-[#F4F4F4] text-bBlack flex items-center justify-center font-mono font-bold text-xl mb-2">OUT</div>
+                            <div class="font-display text-bWhite text-center text-sm uppercase">Action</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-bBlack py-12 border-t-8 border-bYellow text-center font-display uppercase">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-4xl font-bold text-bWhite mb-4">PHYSICAL AI SHOWCASE</div>
+        <p class="text-bYellow font-bold text-xl mb-4 tracking-widest">INDUSTRIAL ENGINEERING BRUTALISM</p>
+    </div>
+</footer>
+</body></html>
